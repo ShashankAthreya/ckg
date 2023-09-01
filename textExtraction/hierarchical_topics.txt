@@ -1,0 +1,8 @@
+Parent_ID
+Parent_Name
+Topics
+Child_Left_ID
+Child_Left_Name
+Child_Right_ID
+Child_Right_Name
+Distance
