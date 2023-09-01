@@ -1,0 +1,2034 @@
+@prefix : <http://localhost:8080/> .
+
+:BTL_Remember a :BloomTaxonomyLevel ;
+          :name "Remember" ;
+          :value 1 .
+
+:BTL_Understand a :BloomTaxonomyLevel ;
+          :name "Understand" ;
+          :value 2 .
+
+:BTL_Apply a :BloomTaxonomyLevel ;
+          :name "Apply" ;
+          :value 3 .
+
+:BTL_Analyse a :BloomTaxonomyLevel ;
+          :name "Analyse" ;
+          :value 4 .
+
+:BTL_Evaluate a :BloomTaxonomyLevel ;
+          :name "Evaluate" ;
+          :value 5 .
+
+:BTL_Create a :BloomTaxonomyLevel ;
+          :name "Create" ;
+          :value 6 .
+
+:Distributed_and_Parallel_Programming a :Topic ;
+          :name "Distributed and Parallel Programming" ;
+          :sub_domain :SubDomainParallelComputing, :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Analyse ] ;
+          :has_topics :Parallel_Programming .
+
+:Parallel_Programming a :Topic ;
+          :name "Parallel Programming" ;
+          :sub_domain :SubDomainParallelComputing ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Analyse ] ;
+          :has_topics :Parallelism, :Parallel_Thinking .
+
+:Parallelism a :Topic ;
+          :name "Parallelism" ;
+          :sub_domain :SubDomainParallelComputing ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Apply ] ;
+          :has_topics :Moores_Law, :Dennard_scaling, :Single_Core, :Multi_Core, :Parallelism_Challenges, :Parallelism_Levels, :Parallel_Machine_Model, :Amdahls_Law, :Gustafsons_Law .
+
+:Parallelism_Levels a :Topic ;
+          :name "Levels" ;
+          :sub_domain :SubDomainParallelComputing ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :Instruction_Level_Parallelism, :Data_Task_Level_Parallelism, :Data_Level_Parallelism .  
+
+:Data_Task_Level_Parallelism a :Topic;
+    :name "Data-Task Level Parallelism";
+    :sub_domain :SubDomainParallelComputing ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ]. 
+
+:Data_Level_Parallelism a :Topic;
+    :name "Data Level Parallelism";
+    :sub_domain :SubDomainParallelComputing ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Parallelism_Challenges a :Topic ;
+          :name "Challenges" ;
+          :sub_domain :SubDomainParallelComputing ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :Parallelism_Challenges_Power, :Parallelism_Challenges_Design_Complexity .
+
+:Parallelism_Challenges_Design_Complexity a :Topic ;
+          :name "Design Complexity" ;
+          :sub_domain :SubDomainParallelComputing ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Parallelism_Challenges_Power a :Topic ;
+          :name "Power" ;
+          :sub_domain :SubDomainParallelComputing ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Moores_Law a :Topic ;
+          :name "Moore's Law" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Dennard_scaling a :Topic ;
+          :name "Dennard Scaling" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Amdahls_Law a :Topic;
+    :name "Amdahl's Law";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember] .
+
+
+:Gustafsons_Law a :Topic;
+    :name "Gustafson's Law";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+:Instruction_Level_Parallelism a :Topic ;
+          :name "Instruction Level Parallelism" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :ILP_Scaling .
+
+:ILP_Scaling a :Topic ;
+          :name "ILP Scaling" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Single_Core a :Topic ;
+          :name "Single Core" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :Single_Core_Performance_Scaling .
+
+:Single_Core_Performance_Scaling a :Topic ;
+          :name "Single Core Performance Scaling" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Multi_Core a :Topic ;
+          :name "Multi Core" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :Dark_Silicon, :Multithreads, :CPU, :GPU, :Multi_Core_Performance, :Hardware_Performance_Metrics, :Multi_Core_Scheduling .
+
+:Multi_Core_Scheduling a :Topic;
+    :name "Scheduling";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Block_Scheduling, :Warp_Scheduling .
+
+:Block_Scheduling a :Topic;
+    :name "Block Scheduling";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Warp_Scheduling a :Topic;
+    :name "Warp Scheduling";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Warp_Occupancy, :Stalling_Warps .
+
+:Warp_Occupancy a :Topic;
+    :name "Warp Occupancy";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+      
+:Stalling_Warps a :Topic;
+    :name "Stalling Warps";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Multithread_Thread_Divergence a :Topic;
+    :name "Multithread Thread_Divergence";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] . 
+
+:Multithreads a :Topic;
+    :name "Multithreads";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Multithread_Programming_Models, :Multithread_Challenges, :Locking, :Thread_Synchronisation, :Multithread_Thread_Divergence .
+
+:Locking a :Topic;
+    :name "Locking";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Deadlock, :Livelock .
+
+:Deadlock a :Topic;
+    :name "Deadlock";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Livelock a :Topic;
+    :name "Livelock";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Multithread_Challenges a :Topic;
+    :name "Challenges";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Multithread_Challenge_Parallelism, :Multithread_Challenge_Communication, :Multithread_Challenge_Synchronization .
+
+:Multithread_Challenge_Parallelism a :Topic;
+    :name "Parallelism";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ].
+
+:Multithread_Challenge_Communication a :Topic;
+    :name "Communication";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+:Multithread_Challenge_Synchronization a :Topic;
+    :name "Synchronization";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+:Multithread_Programming_Models a :Topic;
+    :name "Programming Models";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ];
+    :has_topics :PThread_Programming_Models, :OpenMP_Programming_Models .
+
+:PThread_Programming_Models a :Topic;
+    :name "PThread";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Apply ];
+    :has_topics :Multithread_Race_Condition .
+
+:Multithread_Race_Condition a :Topic;
+    :name "Race Condition";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:OpenMP_Programming_Models a :Topic;
+    :name "OpenMP";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Analyse ];
+    :has_topics :OpenMP_Thread_Scheduling, :OpenMP_Loop_Scheduling .
+
+:OpenMP_Thread_Scheduling a :Topic;
+    :name "Thread Scheduling";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:OpenMP_Loop_Scheduling a :Topic;
+    :name "Loop Scheduling";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:CPU a :Topic;
+    :name "CPU";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] . 
+
+:GPU a :Topic;
+    :name "GPU";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Apply ];
+    :has_topics :GPU_Programming, :GPU_Architecture, :GPU_Atomic_Operations, :GPU_Parallelisation, :GPU_Optimisation .
+
+:GPU_Programming a :Topic;
+    :name "GPU Programming";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:GPU_Architecture a :Topic;
+    :name "GPU Architecture";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:GPU_Parallelisation a :Topic;
+    :name "GPU Parallelisation";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :GPU_Parallelisation_Vector_ADD .
+
+:GPU_Parallelisation_Vector_ADD a :Topic;
+    :name "Vector-ADD";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+:GPU_Atomic_Operations a :Topic;
+    :name "Atomic Operations";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :GPU_Atomics .
+
+:GPU_Atomics a :Topic;
+    :name "Atomics";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:GPU_Programming_Models a :Topic;
+    :name "GPU Programming Models";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :GPU_Programming_Model_CUDA, :GPU_Programming_Model_OpenCL .
+
+:GPU_Programming_Model_CUDA a :Topic;
+    :name "CUDA";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :CUDA_Parallelism_Model .
+
+:CUDA_Parallelism_Model a :Topic;
+    :name "Parallelism Model";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:CUDA_Programming_Organisation a :Topic;
+    :name "Programming Organisation";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :CUDA_Execution_Flow, :CUDA_Memory_Allocation .
+
+:CUDA_Execution_Flow a :Topic;
+    :name "Execution Flow";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:CUDA_Memory_Allocation a :Topic;
+    :name "Memory Allocation";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:GPU_Programming_Model_OpenCL a :Topic;
+    :name "OpenCL";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+:GPU_Optimisation a :Topic;
+    :name "Optimisation";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:Memory a :Topic;
+    :name "Memory";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Memory_Caching, :Memory_Coalescing, :Multiple_Device_Memory_Scopes, :CUDA_Memory_Allocation .
+
+:Memory_Caching a :Topic;
+    :name "Memory Caching";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:Memory_Coalescing a :Topic;
+    :name "Memory Coalescing";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+
+:Memory_Spaces a :Topic;
+    :name "Memory Spaces";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Multiple_Device_Memory_Scopes .
+
+:Multiple_Device_Memory_Scopes a :Topic;
+    :name "Multiple Device Memory Scopes";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Memory_Consistency  .
+
+:Memory_Consistency a :Topic;
+    :name "Memory Consistency";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:Thread_Synchronisation a :Topic;
+    :name "Thread Synchronisation";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Barriers .
+
+:Barriers a :Topic;
+    :name "Barriers";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Block_Level_Barrier, :Global_Barrier .
+
+:Block_Level_Barrier a :Topic;
+    :name "Block Level Barrier";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:Global_Barrier a :Topic;
+    :name "Global Barrier";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:Multi_Core_Performance a :Topic;
+    :name "Performance";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Apply ] .
+
+:Hardware_Performance_Metrics a :Topic;
+    :name "Hardware Performance Metrics";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Apply ].
+
+:Parallel_Machine_Model a :Topic;
+    :name "Parallel Machine Model";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :PMM_Shared_Memory, :PMM_Distributed_Memory, :PMM_Virtual_Shared_Memory, :PMM_Hybrid_Memory .
+
+:PMM_Shared_Memory a :Topic;
+    :name "Shared Memory";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :PMM_Shared_Memory_Software_Cache .
+
+:PMM_Shared_Memory_Software_Cache a :Topic;
+    :name "Software Caching";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:PMM_Distributed_Memory a :Topic;
+    :name "Distributed Memory";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:PMM_Virtual_Shared_Memory a :Topic;
+    :name "Virtual Shared Memory";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:PMM_Hybrid_Memory a :Topic;
+    :name "Hybrids";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Dark_Silicon a :Topic ;
+          :name "Dark Silicon" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:MapReduce a :Topic ;
+          :name "MapReduce" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Analyse ];
+          :has_topics :MapReduce_Programming_Model, :Apache_Spark, :HDFS .
+
+:MapReduce_Programming_Model a :Topic ;
+          :name "MapReduce Programming Model" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Analyse ];
+          :has_topics :MRPM_Distributed_Execution, :MRPM_Dataflow, :MRPM_Partition_Function, :Master_Slave .
+
+:MRPM_Distributed_Execution a :Topic ;
+          :name "Distributed Execution" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:MRPM_Dataflow a :Topic ;
+          :name "Dataflow" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:MRPM_Partition_Function a :Topic ;
+          :name "Partition Function" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:Master_Slave_Coordination a :Topic ;
+          :name "Master-Slave Coordination" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:Apache_Spark a :Topic ;
+          :name "Apache Spark" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ];
+          :has_topics :Apache_Spark_Model .
+
+:Apache_Spark_Model a :Topic ;
+          :name "Apache Spark Model" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ];
+          :has_topics :Spark_RDD, :Spark_Streaming . 
+
+:Spark_RDD a :Topic ;
+          :name "Resilient Distributed Datasets" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ];
+          :has_topics :Spark_RDD_Operations . 
+
+:Spark_RDD_Operations a :Topic ;
+          :name "Operations" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ].
+
+:Spark_Streaming a :Topic ;
+          :name "Spark Streaming" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ];
+          :has_topics :Spark_D_Stream, :Spark_Window_Operations . 
+
+:Spark_D_Stream a :Topic ;
+          :name "D Stream" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ];
+          :has_topics :Spark_D_Stream_Transformations . 
+
+:Spark_D_Stream_Transformations a :Topic ;
+          :name "Transformations" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:Spark_Window_Operations a :Topic ;
+          :name "Window Operations" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:Hadoop_Ecosystem a :Topic ;
+          :name "Hadoop Ecosystem" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ];
+          :has_topics :HDFS .
+
+:HDFS a :Topic ;
+          :name "HDFS" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ].
+
+:Parallel_Thinking a :Topic ;
+          :name "Parallel Thinking" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:Decentalised_Application a :Topic;
+          :name "Decentralised Application" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :Blockchain, :Client_Server, :Ethereum_based_dApp .
+        
+:Blockchain a :Topic;
+          :name "Blockchain" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :Proof_Of_Work, :Blockchain_Wallet, :Blockchain_Classification .
+
+        
+:Proof_Of_Work a :Topic;
+          :name "Proof of Work" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+        
+:Client_Server a :Topic;
+          :name "Client-Server" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Apply ] ;
+          :has_topics :P2P, :Master_Slave .
+
+        
+:Master_Slave a :Topic;
+          :name "Master-Slave" ;
+          :sub_domain :SubDomainComputerArchitecture ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ];
+          :has_topics :Master_Slave_Coordination .
+
+:P2P a :Topic;
+          :name "P2P" ;
+          :sub_domain :SubDomainComputerNetworks ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :P2P_Structured, :P2P_Unstructured .
+
+        
+:P2P_Structured a :Topic;
+          :name "Structured P2P" ;
+          :sub_domain :SubDomainComputerNetworks ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] .
+
+        
+:P2P_Unstructured a :Topic;
+          :name "Unstructured P2P" ;
+          :sub_domain :SubDomainComputerNetworks ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] .
+
+:Ethereum a :Topic;
+          :name "Ethereum" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Apply ] ;
+          :has_topics :Ethereum_based_dApp .
+
+:Ethereum_based_dApp a :Topic;
+          :name "Ethereum based dApp" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Apply ] ;
+          :has_topics :Smart_Contract, :Ethereum_Virtual_Machine .
+
+        
+:Ethereum_Virtual_Machine a :Topic;
+          :name "Ethereum VM" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics  :Ethereum_GAS .
+
+
+:Ethereum_GAS  a     :Topic;
+        :in_course   [ :bloom_taxonomy_level  :BTL_Remember;
+                       :course                :Course5062COPP6Y
+                     ];
+        :name        "GAS";
+        :sub_domain  :SubDomainComputerArchitecture .
+
+        
+:Smart_Contract a :Topic;
+          :name "Smart Contract" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics  :Smart_Contract_Deployment, :Smart_Contract_Development, :Smart_Contract_Execution, :Smart_Contract_Language, :Smart_Contract_Operation, :Smart_Contract_Operation, :Smart_Contract_State_Machine_View .
+
+:Smart_Contract_Deployment a :Topic;
+          :name "Smart Contract Deployment" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Smart_Contract_Development a :Topic;
+          :name "Smart Contract Development" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Smart_Contract_Language a :Topic;
+          :name "Smart Contract Language" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] ;
+          :has_topics :Smart_Contract_Language_Solidity .
+        
+:Smart_Contract_Language_Solidity a :Topic;
+          :name "Solidity" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Smart_Contract_Operation a :Topic;
+          :name "Smart Contract Operation" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+
+:Smart_Contract_Execution a :Topic;
+          :name "Smart Contract Execution" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Smart_Contract_State_Machine_View a :Topic;
+          :name "State Machine View of Smart Contracts" ;
+          :sub_domain :SubDomainDecentralisedApplications ;
+          :in_course [
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Service_Oriented_Architecture a :Topic;
+    :name "Service Oriented Architecture";
+    :sub_domain :SubDomainComputerArchitecture;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Apply ];
+    :has_topics :Service_Oriented_Architecture_Model, :Web_Service .
+
+:Service_Oriented_Architecture_Model a :Topic;
+    :name "SOA Model";
+    :sub_domain :SubDomainComputerArchitecture;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :SOA_Model_Provider, :SOA_Model_Requester, :SOA_Model_Registry .
+
+:SOA_Model_Provider a :Topic;
+    :name "Provider";
+    :sub_domain :SubDomainComputerArchitecture;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand].
+
+:SOA_Model_Requester a :Topic;
+    :name "Requester";
+    :sub_domain :SubDomainComputerArchitecture;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand].
+
+:SOA_Model_Registry a :Topic;
+    :name "Registry";
+    :sub_domain :SubDomainComputerArchitecture;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand].
+
+:Web_Service a :Topic;
+    :name "Web Service";
+    :sub_domain :SubDomainWebApplications;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Analyse ];
+    :has_topics :Web_Service_Addressing, :SOAP_Based_Web_Services, :Web_Service_Reference_Framework, :RESTful_Web_service .
+
+:Web_Service_Addressing a :Topic;
+    :name "Web Service Addressing";
+    :sub_domain :SubDomainWebApplications;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember].
+
+:SOAP_Based_Web_Services a :Topic;
+    :name "SOAP Based Web Services";
+    :sub_domain :SubDomainWebApplications;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand].
+
+:Web_Service_Reference_Framework a :Topic;
+    :name "Web Service Reference Framework";
+    :sub_domain :SubDomainWebApplications;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Web_Service_State .
+
+:Web_Service_State a :Topic;
+    :name "Web Service State";
+    :sub_domain :SubDomainWebApplications;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Web_Service_State_Stateless, :Web_Service_State_Stateful .
+
+:Web_Service_State_Stateless a :Topic;
+    :name "Stateless";
+    :sub_domain :SubDomainWebApplications;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember].
+
+:Web_Service_State_Stateful a :Topic;
+    :name "Stateful";
+    :sub_domain :SubDomainWebApplications;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember].
+
+:RESTful_Web_service a :Topic;
+    :name "RESTful Web service";
+    :sub_domain :SubDomainWebApplications;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Decentralised_System a :Topic;
+    :name "Decentralised System";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Apply ];
+    :has_topics :Distributed_Ledger .
+
+:Distributed_Ledger a :Topic;
+    :name "Distributed Ledger";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Distributed_Ledger_Transaction, :Distributed_Ledger_Business, :Distributed_Ledger_Challenges, :Blockchain .
+
+:Centralised_System a :Topic;
+    :name "Centralised System";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] . 
+
+:Distributed_System a :Topic;
+    :name "Distributed_System";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Analyse ];
+    :has_topics :Decentralised_System, :Centralised_System .
+
+:Distributed_Memory_Systems a :Topic;
+    :name "Distributed Memory Systems";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Message_Passing_Interface .
+
+:Message_Passing_Interface a :Topic;
+    :name "Message Passing Interface";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :MPI_Datatype, :MPI_Type_Matching, :MPI_Organisation_Principle .
+
+:MPI_Organisation_Principle a :Topic;
+    :name "MPI Organisation Principle";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :MPI_Routines, :MPI_Communication .
+
+:MPI_Routines a :Topic;
+    :name "MPI Routines";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:MPI_Communication a :Topic;
+    :name "Communication";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :MPI_Synchronised_Communication, :MPI_Asynchronised_Communication, :MPI_point2point_Communication .
+
+:MPI_Synchronised_Communication a :Topic;
+    :name "Synchronised Communication";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:MPI_Asynchronised_Communication a :Topic;
+    :name "Asynchronised Communication";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:MPI_point2point_Communication a :Topic;
+    :name "Point to Point Communication";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:MPI_Datatype a :Topic;
+    :name "Datatypes";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:MPI_Type_Matching a :Topic;
+    :name "Type Matching";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Distributed_Ledger_Transaction a :Topic;
+    :name "Transaction";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Distributed_Ledger_Transaction_Concensus .
+
+
+:Distributed_Ledger_Challenges a :Topic;
+    :name "Challenges";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+
+:Distributed_Ledger_Business a :Topic;
+    :name "Business Activities";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:Blockchain_Wallet a :Topic;
+    :name "Blockchain Wallet";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Blockchain_Technologies a :Topic;
+    :name "Blockchain Technologies";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Bitcoin, :Ethereum, :IOTA, :Hyperledger_Fabric .
+
+
+:Blockchain_Classification a :Topic;
+    :name "Blockchain Classification";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+
+:Hash_function a :Topic;
+    :name "Hash";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ];
+    :has_topics :SHA256 .
+
+
+:SHA256 a :Topic;
+    :name "SHA256";
+    :sub_domain :SubDomainComputerArchitecture ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+
+:Bitcoin a :Topic;
+    :name "Bitcoin";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Analyse ];
+    :has_topics :Bitcoin_Nonce .
+
+
+:IOTA a :Topic;
+    :name "IOTA";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Hyperledger_Fabric a :Topic;
+    :name "Hyperledger Fabric";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+
+:Distributed_Ledger_Transaction_Concensus a :Topic;
+    :name "Concensus";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Analyse ] . 
+
+:Bitcoin_Nonce a :Topic;
+    :name "Nonce";
+    :sub_domain :SubDomainDecentralisedApplications ;
+    :in_course [
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Course5062COPP6Y a :Course ;
+                :name "Distributed and Parallel Programming" ;
+                :course_code "5062COPP6Y" ;
+                :sub_domain :SubDomainParallelComputing, :SubDomainComputerArchitecture , :SubDomainDecentralisedApplications, :SubDomainWebApplications, :SubDomainComputerNetworks ;
+                :root_topic :Distributed_and_Parallel_Programming .
+
+:Web_Data_Processing_Systems a :Topic ;
+          :name "Web Data ProcessingSystems" ;
+          :sub_domain :SubDomainWebApplications, :SubDomainArtificialIntellignece ;
+          :in_course [
+            :course :CourseXM_40020 ;
+            :bloom_taxonomy_level :BTL_Analyse ];
+          :has_topics :Web, :Knowledge_Base, :Natural_Language_Processing, :Privacy_and_Fairness_on_the_Web .
+
+:Web a :Topic; 
+:name "Web"; 
+:sub_domain :SubDomainWebApplications ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Web_Application, :Web_Foundation .
+:Web_Application a :Topic; 
+:name "Applications of Web"; 
+:sub_domain :SubDomainWebApplications ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] .
+:Web_Foundation a :Topic; 
+:name "Foundation depending on Web"; 
+:sub_domain :SubDomainWebApplications ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] .
+:Knowledge_Base a :Topic; 
+:name "Knowledge Base(KB)"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Knowledge_Base_Languages, :Building_Knowledge_Repositories , :Different_Knowledge_Bases, :Knowledge_Consumption .
+:Building_Knowledge_Repositories a :Topic; 
+:name "Building Knowledge Repositories"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Manifest_Knowledge, :Latent_Knowledge .
+:Manifest_Knowledge a :Topic; 
+:name "Manifest Knowledge"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Knowledge_Base_Languages .
+:Latent_Knowledge a :Topic; 
+:name "Latent Knowledge"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Different_Knowledge_Bases a :Topic; 
+:name "Different Knowledge Bases"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :WordNet, :YAGO, :FreeBase, :DBpedia, :WikiData, :BabelNet .
+:WordNet a :Topic; 
+:name "WordNet"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] .
+:YAGO a :Topic; 
+:name "YAGO"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] .
+:FreeBase a :Topic; 
+:name "FreeBase"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] .
+:DBpedia a :Topic; 
+:name "DBpedia"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] .
+:WikiData a :Topic; 
+:name "WikiData"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] .
+:BabelNet a :Topic; 
+:name "BabelNet"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] .
+:Knowledge_Base_Languages a :Topic; 
+:name "Languages related to Knowledge Bases"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] ;
+    :has_topics :RDF .
+:RDF a :Topic; 
+:name "RDF"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] ;
+    :has_topics :RDF_Schema, :SPARQL .
+:RDF_Schema a :Topic; 
+:name "RDF Schema"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] .
+:SPARQL a :Topic; 
+:name "SPARQL"; 
+:sub_domain :SubDomainDatabaseQuerying ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] .
+:Natural_Language_Processing a :Topic; 
+:name "Natural Language Processing(NLP)"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Analyse ] ;
+    :has_topics :Knowledge_Acquisition, :NLP_Preprocessing, :Disambiguation, :Information_Extraction, :Reasoning, :Disambiguation  .
+:Knowledge_Acquisition a :Topic; 
+:name "Knowledge Acquisition"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Apply ] .
+:NLP_Preprocessing a :Topic; 
+:name "NLP Preprocessing"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Apply ] ;
+    :has_topics :Tokenization, :Lemmatization, :Stemming, :Stopword_Removal, :POS_Tagging, :Parsing .
+:Tokenization a :Topic; 
+:name "Tokenization"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Lemmatization a :Topic; 
+:name "Lemmatization"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Stemming a :Topic; 
+:name "Stemming"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Stopword_Removal a :Topic; 
+:name "Stopword Removal"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:POS_Tagging a :Topic; 
+:name "POS(Part Of Speech) Tagging"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :POS_Tagging_Methods .
+:POS_Tagging_Methods a :Topic; 
+:name "Methods for POS Tagging"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] ;
+    :has_topics :Hidden_Markov_Model .
+:Hidden_Markov_Model a :Topic; 
+:name "Hidden Markov Model (HMM)"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Remember ] .
+:Parsing a :Topic; 
+:name "Parsing"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Information_Extraction a :Topic; 
+:name "Information Extraction"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Analyse ] ;
+    :has_topics :Name_Entity_Recognition, :Relation_Extraction .
+:Name_Entity_Recognition a :Topic; 
+:name "Name Entity Recognition (NER)"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Apply ] ;
+    :has_topics :Entity_Linking, :NeuroNER .
+:NeuroNER a :Topic; 
+:name "NeuroNER"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Entity_Linking a :Topic; 
+:name "Entity Linking"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Candidate_Entity_Generation, :Candidate_Entity_Ranking, :Unlinkable_Mention_Prediction .
+:Candidate_Entity_Generation a :Topic; 
+:name "Candidate Entity Generation,"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Dictionary_Based_Techniques, :Surface_form_expansion, :Search_engine_Based .
+:Dictionary_Based_Techniques a :Topic; 
+:name "Dictionary Based Techniques"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Surface_form_expansion a :Topic; 
+:name "Surface form expansion"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Heuristic-based_Method, :Supervised_learning_Method .
+:Heuristic-based_Method a :Topic; 
+:name "Heuristic-based Method"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Supervised_learning_Method a :Topic; 
+:name "Supervised learning Method"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Search_engine_Based a :Topic; 
+:name "Based on search engines"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Candidate_Entity_Ranking a :Topic; 
+:name "Candidate Entity Ranking,"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Context_independent_features, :Context_dependant_features, :Supervised_Ranking_Methods, :Unsupervised_Ranking_Methods .
+:Context_independent_features a :Topic; 
+:name "Context independent features"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Context_dependant_features a :Topic; 
+:name "Context dependant features"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Supervised_Ranking_Methods a :Topic; 
+:name "Supervised Ranking Methods"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Unsupervised_Ranking_Methods a :Topic; 
+:name "Unsupervised Ranking Methods"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Unlinkable_Mention_Prediction a :Topic; 
+:name "Unlinkable Mention Prediction"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Relation_Extraction a :Topic; 
+:name "Relation Extraction (RE)"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Analyse ] ;
+    :has_topics :Traditional_Extraction, :Open_Extraction .
+:Traditional_Extraction a :Topic; 
+:name "Traditional Extraction"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Apply ] ;
+    :has_topics :Hand-written_patterns, :Supervised_Machine_Learning, :Semi_supervised_Machine_Learning .
+:Hand-written_patterns a :Topic; 
+:name "Hand-written patterns"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Supervised_Machine_Learning a :Topic; 
+:name "Supervised Machine Learning"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Semi_supervised_Machine_Learning a :Topic; 
+:name "Semi-supervised Machine Learning"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Bootstrapping, :Distant_Supervision .
+:Bootstrapping a :Topic; 
+:name "Bootstrapping(using seeds)"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Distant_Supervision a :Topic; 
+:name "Distant Supervision"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Open_Extraction a :Topic; 
+:name "Open (Relation/Information) Extraction"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Apply ] ;
+    :has_topics :Text_Runner, :ReVerb, :Patty, :NELL, :ClausIE, :Neural_Open_Relation_Extraction .
+:Text_Runner a :Topic; 
+:name "Text Runner"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:ReVerb a :Topic; 
+:name "ReVerb"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Patty a :Topic; 
+:name "Patty"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:NELL a :Topic; 
+:name "NELL(Never Ending Learning)"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:ClausIE a :Topic; 
+:name "ClausIE"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Neural_Open_Relation_Extraction a :Topic; 
+:name "Neural Open Relation Extraction"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Disambiguation a :Topic; 
+:name "Disambiguation"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Apply ] ;
+    :has_topics :Variants, :Evaluations, :Baseline, :Methods .
+:Variants a :Topic; 
+:name "Variants"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Lexical_Sample_Task, :All-words_task .
+:Lexical_Sample_Task a :Topic; 
+:name "Lexical Sample Task"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:All-words_task a :Topic; 
+:name "All-words task"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Evaluations a :Topic; 
+:name "Evaluations"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Extrinsic_evaluation, :Intrinsic_evaluation .
+:Extrinsic_evaluation a :Topic; 
+:name "Extrinsic evaluation"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Intrinsic_evaluation a :Topic; 
+:name "Intrinsic evaluation"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Baseline a :Topic; 
+:name "Baseline"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Methods a :Topic; 
+:name "Methods"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Apply ] ;
+    :has_topics :Supervised_Methods, :Thesaurus_Dictionary_Methods, :Semi-supervised_Learning .
+:Supervised_Methods a :Topic; 
+:name "Supervised Methods"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :WordNet_Database_of_meaning .
+:WordNet_Database_of_meaning a :Topic; 
+:name "Tag set - Database of meaning(WordNet)"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Thesaurus_Dictionary_Methods a :Topic; 
+:name "Thesaurus/Dictionary Methods"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Simplified_Lesk_Algorithm, :Corpus_Lesk_Algorithm, :Graph-based_methods .
+:Simplified_Lesk_Algorithm a :Topic; 
+:name "Simplified Lesk Algorithm"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Corpus_Lesk_Algorithm a :Topic; 
+:name "Corpus Lesk Algorithm"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Graph-based_methods a :Topic; 
+:name "Graph-based methods"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Semi-supervised_Learning a :Topic; 
+:name "Semi-supervised Learning"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Yaroskys_Algorithm, :Googles_way .
+:Yaroskys_Algorithm a :Topic; 
+:name "Yarosky's Algorithm"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Googles_way a :Topic; 
+:name "Google's way"; 
+:sub_domain :SubDomainNLP ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Knowledge_Consumption a :Topic; 
+:name "Knowledge Consumption"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Apply ] ;
+    :has_topics :Word2Vec, :Statistical_Inference_on_KGs .
+:Word2Vec a :Topic; 
+:name "Word2Vec"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Skip_gram, :Continuous_Bag_of_Word .
+:Skip_gram a :Topic; 
+:name "Skip-gram"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Continuous_Bag_of_Word a :Topic; 
+:name "Continuous Bag of Word(CBOW)"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Statistical_Inference_on_KGs a :Topic; 
+:name "Statistical Inference on KGs"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Link_Prediction .
+:Link_Prediction a :Topic; 
+:name "Link Prediction"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Rule-based_Methods, :Probabilistic_Models, :Factorization_Models, :Embedding_Models .
+:Rule-based_Methods a :Topic; 
+:name "Rule-based Methods"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :AMIE, :Non-monotonic_Learning .
+:AMIE a :Topic; 
+:name "AMIE"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Non-monotonic_Learning a :Topic; 
+:name "Non-monotonic Learning"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Probabilistic_Models a :Topic; 
+:name "Probabilistic Models"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Random_Walks_Path_ranking_Algorithm .
+:Random_Walks_Path_ranking_Algorithm a :Topic; 
+:name "Random Walks/Path ranking Algorithm(PRA)"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Factorization_Models a :Topic; 
+:name "Factorization Models"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Tensors .
+:Tensors a :Topic; 
+:name "Tensors"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Embedding_Models a :Topic; 
+:name "Embedding Models"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Latent_Distance_Model .
+:Latent_Distance_Model a :Topic; 
+:name "Latent Distance Model"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :TransE .
+:TransE a :Topic; 
+:name "TransE"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Reasoning a :Topic; 
+:name "Reasoning"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Analyse ] ;
+    :has_topics :Ontology, :Rules, :Fact_Checking .
+:Ontology a :Topic; 
+:name "Ontology"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Ontological_Languages, :Semantic_Web, :OWL, :OWL2 .
+:Ontological_Languages a :Topic; 
+:name "Ontological Languages"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Semantic_Web a :Topic; 
+:name "Semantic Web"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:OWL a :Topic; 
+:name "OWL(Web Ontology Language)"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:OWL2 a :Topic; 
+:name "OWL2"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Rules a :Topic; 
+:name "Rules"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Safe_Rules_Horn_Clauses, :Existentially_Quantified_Rules, :Translating_an_Ontology_into_a_Rule, :Materialization, :Reasoning_with_Existential_Rules .
+:Safe_Rules_Horn_Clauses a :Topic; 
+:name "Safe Rules/Horn Clauses"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Existentially_Quantified_Rules a :Topic; 
+:name "Existentially Quantified Rules"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Translating_an_Ontology_into_a_Rule a :Topic; 
+:name "Translating an Ontology into a Rule"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Materialization a :Topic; 
+:name "Materialization(Safe Rules)"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Full_Materialization_Alternatives .
+:Full_Materialization_Alternatives a :Topic; 
+:name "Alternatives to Full Materialization"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Reasoning_at_Query_Time .
+:Reasoning_at_Query_Time a :Topic; 
+:name "Reasoning at Query Time"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Top-Down_Evaluation, :Bottom-Up_Evaluation .
+:Top-Down_Evaluation a :Topic; 
+:name "Top-Down Evaluation"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Bottom-Up_Evaluation a :Topic; 
+:name "Bottom-Up Evaluation"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Reasoning_with_Existential_Rules a :Topic; 
+:name "Reasoning with Existential Rules"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Restricted_Chase_Algorithm, :Skolen_Chase_Algorithm .
+:Skolen_Chase_Algorithm a :Topic; 
+:name "Skolen Chase Algorithm"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Restricted_Chase_Algorithm a :Topic; 
+:name "Restricted Chase Algorithm"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Fact_Checking a :Topic; 
+:name "Fact Checking"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Apply ] ;
+    :has_topics :Misinformation_on_Web, :Fact_checking_Difficulty, :Fact_Checking_from_Social_Networks_and_Texts, :Goals_of_Fact-checking, :Previous_Works .
+:Misinformation_on_Web a :Topic; 
+:name "Misinformation on Web"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Fact_checking_Difficulty a :Topic; 
+:name "Difficulty of Fact-checking"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Fact_Checking_from_Social_Networks_and_Texts a :Topic; 
+:name "Fact Checking from Social Networks and Texts"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Goals_of_Fact-checking a :Topic; 
+:name "Goals of Fact-checking"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Previous_Works a :Topic; 
+:name "Previous Works"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Information_Credibility_Paper, :DeClarE:_Evidence-aware_DL, :ExFaKT .
+:Information_Credibility_Paper a :Topic; 
+:name "Information Credibility Paper"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:DeClarE:_Evidence-aware_DL a :Topic; 
+:name "DeClarE: Evidence-aware DL"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:ExFaKT a :Topic; 
+:name "ExFaKT"; 
+:sub_domain :SubDomainKnowledgeOrganisation ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Privacy_and_Fairness_on_the_Web a :Topic; 
+:name "Privacy and Fairness on the Web"; 
+:sub_domain :SubDomainPrivacy ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Apply ] ;
+    :has_topics :Privacy_on_the_Web, :Fairness .
+:Privacy_on_the_Web a :Topic; 
+:name "Privacy on the Web"; 
+:sub_domain :SubDomainPrivacy ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Entropy, :DIFF-PRIV, :Construct_distributed_representation_of_the_topics, :Evaluation .
+:Entropy a :Topic; 
+:name "Entropy"; 
+:sub_domain :SubDomainPrivacy ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:DIFF-PRIV a :Topic; 
+:name "DIFF-PRIV(Differential Privacy)"; 
+:sub_domain :SubDomainPrivacy ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Construct_distributed_representation_of_the_topics a :Topic; 
+:name "Construct distributed representation of the topics"; 
+:sub_domain :SubDomainPrivacy ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Evaluation a :Topic; 
+:name "Evaluation"; 
+:sub_domain :SubDomainPrivacy ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+:Fairness a :Topic; 
+:name "Fairness"; 
+:sub_domain :SubDomainPrivacy ;
+:in_course [
+    :course :CourseXM_40020;
+    :bloom_taxonomy_level :BTL_Understand ] .
+
+
+
+:CourseXM_40020 a :Course ;
+                :name "Web Data Processing Systems" ;
+                :course_code "XM_40020" ;
+                :sub_domain :SubDomainWebApplications, :SubDomainArtificialIntellignece ;
+                :root_topic :Web_Data_Processing_Systems .
+
+:SubDomainParallelComputing a :SubDomain ;
+                             :name "Parallel Computing" ;
+                             :domain :DomainComputerScience .
+
+:SubDomainWebApplications a :SubDomain ;
+                             :name "Web Application" ;
+                             :domain :DomainComputerScience .
+
+:SubDomainArtificialIntellignece a :SubDomain ;
+                             :name "Artificial Intellignece" ;
+                             :domain :DomainComputerScience .
+
+:SubDomainNLP a :SubDomain ;
+                             :name "Natural Language Processing" ;
+                             :domain :DomainComputerScience .
+
+:SubDomainDatabaseQuerying a :SubDomain ;
+                             :name "Database Querying" ;
+                             :domain :DomainComputerScience .
+
+:SubDomainPrivacy a :SubDomain ;
+                             :name "Privacy" ;
+                             :domain :DomainComputerScience .
+
+:SubDomainKnowledgeOrganisation a :SubDomain ;
+                             :name "Knowledge Organisation" ;
+                             :domain :DomainComputerScience .
+
+:SubDomainComputerArchitecture a :SubDomain ;
+                                :name "Computer Architecture" ;
+                                :domain :DomainComputerScience .
+
+:SubDomainDecentralisedApplications a :SubDomain ;
+                                :name "Decentalised Application" ;
+                                :domain :DomainComputerScience .
+
+:SubDomainComputerNetworks a :SubDomain ;
+                                :name "Computer Networks" ;
+                                :domain :DomainComputerScience .
+
+:DomainComputerScience a :Domain ;
+                         :name "Computer Science" .
+

@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "@rdfjs/fetch-lite": "^3.2.1",
+    "@rdfjs/parser-n3": "^2.0.1",
+    "@rdfjs/serializer-jsonld": "^2.0.0",
+    "body-parser": "^1.20.2",
+    "d3": "^7.8.5",
+    "d3-force": "^3.0.0",
+    "express": "^4.18.2",
+    "fetch": "^1.1.0",
+    "jsonld": "^8.2.0",
+    "lodash": "^4.17.21",
+    "n3": "^1.17.0",
+    "node-fetch": "^3.3.2",
+    "node-rdf2json": "^0.0.1",
+    "rdf-dereference": "^2.1.0",
+    "rdf-ext": "^2.2.0",
+    "rdflib": "^2.2.32",
+    "sparqljs": "^3.7.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  
+  "name": "code",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

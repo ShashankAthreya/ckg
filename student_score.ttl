@@ -1,0 +1,9 @@
+@prefix : <http://localhost:8080/student/> .
+
+:2727550 a :Student ;
+    :has_score [
+            :topic :Parallelism ;
+            :grade 6 ] , [
+            :topic :Parallelism_Challenges ;
+            :grade 4 ] .
+    
