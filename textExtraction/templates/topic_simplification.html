@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Topic Simplification</title>
+</head>
+<body>
+    <form action="/topic_simplification" method="post">
+        <label for="new_value">{{ long_value_key }}: {{ long_value }}</label><br>
+        <input type="text" id="new_value" name="new_value" value=""><br>
+        <input type="hidden" id="key" name="key" value="{{ long_value_key }}">
+        <input type="hidden" id="index" name="index" value="{{ index }}">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
