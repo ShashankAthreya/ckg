@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Bootstrap JavaScript and Popper.js (required for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        #selectedNodesDiv {
+    word-wrap: break-word;    /* Allows long words to be broken and wrapped onto the next line */
+    white-space: normal;      /* Allows for normal text wrapping */
+}
+#selectedNodesDiv li {
+    overflow-wrap: break-word; /* Breaks long words for better fit */
+}
+
+    </style>
+
+    <title>Curriculum KG</title>
+</head>
+
+<body>
+    
+    <div style="padding: 10px;">
+        <div class="alert alert-info" role="alert" id="course_info">
+        </div>
+        <button type="button" id="addNode" class="btn btn-outline-success" data-bs-toggle="button" data-toggle="modal"
+            data-target="#nodeModal">Add Node</button>
+        <button type="button" id="updateNode" class="btn btn-outline-warning" disabled data-bs-toggle="button" data-toggle="modal"
+        data-target="#nodeUpdateModal">Update
+            Node</button>
+        <button type="button" id="deleteNode" class="btn btn-outline-danger" disabled data-bs-toggle="button">Delete
+            Node(s)</button>
+        <button type="button" id="addSelectedLink" class="btn btn-outline-success" disabled data-bs-toggle="button">Add
+            Link to Selected Nodes</button>
+        <button type="button" id="linkNodes" class="btn btn-outline-success" data-bs-toggle="button" data-toggle="modal"
+        data-target="#linkAllNodes"> Link Nodes</button>
+        <button type="button" id="removeSelectedLink" class="btn btn-outline-danger" disabled data-bs-toggle="button" >Remove
+            Links from selected Nodes</button>
+        <button type="button" id="unlinkNodes" class="btn btn-outline-danger" data-bs-toggle="button" data-toggle="modal"
+        data-target="#removeAllNodes"> Unlink Nodes</button>
+    </div>
+
+
+    <!-- Node Addition Modal -->
+    <div class="modal fade" id="nodeModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Node Form</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="nodeForm">
+                        <div class="form-group">
+                            <label for="topicKey">Topic Key:</label>
+                            <input type="text" class="form-control" id="topicKey" name="topicKey">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topicName">Topic Name:</label>
+                            <input type="text" class="form-control" id="topicName" name="topicName">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topicSubDomains">Topic Sub Domains:</label>
+                            <select class="form-control" id="topicSubDomains">
+                                <option>(Select one)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="courseName">Course Name:</label>
+                            <select class="form-control" id="courseName">
+                                <option>(Select one)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bloomTaxonomy">Bloom's Taxonomy:</label>
+                            <select class="form-control" id="bloomTaxonomy">
+                                <option>(Select one)</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="submitNode">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Node Updation Modal -->
+    <div class="modal fade" id="nodeUpdateModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Node Update Form</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="nodeUpdateForm">
+                        <div class="form-group">
+                            <label for="topicUpdateKey">Topic Key:</label>
+                            <input type="text" class="form-control" id="topicUpdateKey" name="topicUpdateKey">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topicUpdateName">Topic Name:</label>
+                            <input type="text" class="form-control" id="topicUpdateName" name="topicUpdateName">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topicSubDomains">Topic Sub Domains:</label>
+                            <select class="form-control" id="topicSubDomainsUpdate">
+                                <option>(Select one)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="courseName">Course Name:</label>
+                            <select class="form-control" id="courseNameUpdate">
+                                <option>(Select one)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bloomTaxonomy">Bloom's Taxonomy:</label>
+                            <select class="form-control" id="bloomTaxonomyUpdate">
+                                <option>(Select one)</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="submitUpdatedNode">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="linkAllNodes">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Link Nodes</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="nodeUpdateForm">
+
+                        <div class="form-group">
+                            <label for="addSrcTopic">Source Topic:</label>
+                            <select class="form-control" id="addSrcTopic">
+                                <option>(Select one)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="addTrgtTopic">Target Topic:</label>
+                            <select class="form-control" id="addTrgtTopic">
+                                <option>(Select one)</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="addLinkSubmit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="removeAllNodes">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Unlink Nodes</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="nodeUpdateForm">
+
+                        <div class="form-group">
+                            <label for="remSrcTopic">Source Topic:</label>
+                            <select class="form-control" id="remSrcTopic">
+                                <option>(Select one)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="remTrgtTopic">Target Topic:</label>
+                            <select class="form-control" id="remTrgtTopic">
+                                <option>(Select one)</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="remLinkSubmit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="selectedNodesDiv" class="alert alert-dark" style="display: none;">
+        <!-- <h1>Nodesssssss</h1> -->
+    </div>
+    
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+
+<script type="module">
+
+    import define from "./index.js";
+    import { Runtime, Library, Inspector } from "./runtime.js";
+
+    const runtime = new Runtime();
+    const main = runtime.module(define, Inspector.into(document.body));
+</script>

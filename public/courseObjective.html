@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Bootstrap JavaScript and Popper.js (required for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            /* ensures there are no double lines */
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            /* adds border to the table, header cells, and data cells */
+        }
+
+        th,
+        td {
+            padding: 8px 12px;
+            /* adds some padding inside each cell for better appearance */
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            /* light gray background color for headers */
+        }
+    </style>
+
+    <title>Curriculum KG</title>
+</head>
+
+<body>
+
+    <h1 id="Title">Course Objective</h1>
+    <button type="button" id="Course5062COPP6Y" class="btn btn-outline-info" data-bs-toggle="button" data-toggle="modal"
+        data-target="#nodeModal">Course5062COPP6Y</button>
+    <button type="button" id="CourseXM_40020" class="btn btn-outline-info" data-bs-toggle="button" data-toggle="modal"
+        data-target="#nodeModal">CourseXM_40020</button>
+    <div id="courseObjective" style="display: none;">
+        <table id="courseObjectiveTable" cellspacing="0" cellpadding="5">
+            <thead>
+                <tr>
+                    <th>Subdomain</th>
+                    <th>Topic Count</th>
+                    <th>Percentage of Total</th>
+                    <th>Taxonomy Level</th>
+                    <th>Taxonomy Count</th>
+                    <th>Percentage in Subdomain</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <!-- Data will be inserted here using JavaScript -->
+            </tbody>
+        </table>
+    </div>
+    <div id="chart" style="padding: 50px;"></div>
+
+</body>
+
+<script>
+    async function getCourseInfo(course) {
+        const response = await fetch(`/course/objective?id=${course}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        const data = await response.json();
+
+        document.getElementById('chart').innerHTML = '';
+
+
+        const totalTopicCount = data.Subdomain.reduce((acc, curr) => acc + curr.topicCount, 0);
+
+        const tau = 2 * Math.PI;
+
+        const w = 1300;
+
+        const h = w;
+        const svg = d3.select("#chart").append("svg").attr("width", w).attr("height", h);
+        const g = svg.append("g").attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
+
+        const totalTopics = data.Subdomain.reduce((acc, curr) => acc + curr.topicCount, 0);
+
+        const colorInner = d3.scaleOrdinal(d3.schemeSet3);
+
+        const getColorOuter = (name) => {
+            const baseColor = colorInner(name);
+            return d3.interpolateRgb(baseColor, "#FFF")(0.6);
+        }
+
+        let innerData = [];
+        data.Subdomain.forEach((d, i) => {
+            let startAngle = i === 0 ? 0 : innerData[i - 1].endAngle;
+            let endAngle = startAngle + (d.topicCount / totalTopics) * tau;
+            innerData.push({
+                name: d.id.replace("SubDomain", ""),
+                startAngle: startAngle,
+                endAngle: endAngle,
+                value: d.topicCount
+            });
+        });
+
+        const outerData = [];
+        data.Subdomain.forEach((sd, i) => {
+            let accumulated = 0;
+            sd.taxonomy.forEach(t => {
+                let startAngle = innerData[i].startAngle + (accumulated / sd.topicCount) * (innerData[i].endAngle - innerData[i].startAngle);
+                accumulated += t.count;
+                let endAngle = innerData[i].startAngle + (accumulated / sd.topicCount) * (innerData[i].endAngle - innerData[i].startAngle);
+                outerData.push({
+                    parent: sd.id,
+                    parentValue: sd.topicCount,
+                    name: t.TaxonomyLevel.replace("BTL_", ""),
+                    startAngle: startAngle,
+                    endAngle: endAngle,
+                    value: t.count
+                });
+            });
+        });
+
+        const arcInner = d3.arc()
+            .innerRadius(.17 * w)
+            .outerRadius(.2225 * w)
+            .padAngle(0.01);
+
+        const arcOuter = d3.arc()
+            .innerRadius(.230 * w)
+            .outerRadius(.39 * w)
+            .padAngle(0.01);
+
+        const arcOuterLabels = d3.arc()
+            .innerRadius(.35 * w)
+            .outerRadius(.35 * w);
+
+        // Inner Pie
+        g.selectAll(".inner")
+            .data(innerData)
+            .enter().append("path")
+            .attr("class", "inner")
+            .attr("fill", d => colorInner(d.name))
+            .attr("d", arcInner);
+
+        // Inner Labels (Percentage)
+        g.selectAll(".innerLabel")
+            .data(innerData)
+            .enter().append("text")
+            .attr("transform", d => `translate(${arcInner.centroid(d)})`)
+            .attr("text-anchor", "middle")
+            .style("fill", "#333")
+            .text(d => ((d.value / totalTopics) * 100).toFixed(2) + '%');
+
+        // Outer Pie
+        g.selectAll(".outer")
+            .data(outerData)
+            .enter().append("path")
+            .attr("class", "outer")
+            .attr("fill", d => getColorOuter(d.parent.replace("SubDomain", "")))
+            .attr("d", arcOuter);
+        let outerRadius = w / 2;  // or whatever your outer radius is
+        let arc = d3.arc().outerRadius(outerRadius).innerRadius(0);
+        g.selectAll(".leaderLine")
+            .data(outerData)
+            .enter().append("line")
+            .attr("x1", d => arc.centroid(d)[0])
+            .attr("y1", d => arc.centroid(d)[1])
+            .attr("x2", d => arcOuterLabels.centroid(d)[0] * 1.2) // 1.5 is an arbitrary scaling factor to push out the label
+            .attr("y2", d => arcOuterLabels.centroid(d)[1] * 1.2)
+            .style("stroke", "#333")
+            .style("stroke-width", "1px");
+
+        // Draw labels
+        g.selectAll(".outerLabel")
+            .data(outerData)
+            .enter().append("text")
+            .attr("transform", d => `translate(${arcOuterLabels.centroid(d)[0] * 1.2}, ${arcOuterLabels.centroid(d)[1] * 1.2})`) // Shift labels outwards
+            .attr("text-anchor", d => arcOuterLabels.centroid(d)[0] > 0 ? "start" : "end") // Determine anchor based on quadrant
+            .style("fill", "#333")
+            .text(d => `${d.name} ${(d.value / d.parentValue * 100).toFixed(2)}%`);
+
+        // Legend for inner colors
+        const legendRectSize = 18;
+        const legendSpacing = 4;
+        const legendWidth = 200;
+        const legendHeight = 20;
+
+        const legend = svg.selectAll('.legend')
+            .data(colorInner.domain())
+            .enter()
+            .append('g')
+            .attr('class', 'legend')
+            .attr('transform', (d, i) => {
+                const horz = w - legendWidth * 1.5;
+                const vert = i * legendHeight;
+                return `translate(${horz}, ${vert})`;
+            });
+
+        legend.append('rect')
+            .attr('width', legendRectSize)
+            .attr('height', legendRectSize)
+            .style('fill', colorInner)
+            .style('stroke', colorInner);
+
+        legend.append('text')
+            .attr('x', legendRectSize + legendSpacing)
+            .attr('y', legendRectSize - legendSpacing)
+            .text(d => d);
+
+        // Check for legend overflow and adjust its position if needed
+        if (colorInner.domain().length * legendHeight > h * 0.3) {
+            let rows = Math.ceil(colorInner.domain().length / 2);
+            legend.attr('transform', (d, i) => {
+                const col = Math.floor(i / rows);
+                const horz = w - legendWidth * (2 - col);
+                const vert = (i % rows) * legendHeight;
+                return `translate(${horz}, ${vert})`;
+            });
+        }
+
+        // Sort subdomains by percentage of the total in descending order
+        data.Subdomain.sort((a, b) => {
+            const aPercentage = a.topicCount / totalTopicCount;
+            const bPercentage = b.topicCount / totalTopicCount;
+            return bPercentage - aPercentage;
+        });
+
+        // For each subdomain, sort taxonomy levels by their percentage in descending order
+        data.Subdomain.forEach(subdomain => {
+            subdomain.taxonomy.sort((a, b) => {
+                const aTaxonomyPercentage = a.count / subdomain.topicCount;
+                const bTaxonomyPercentage = b.count / subdomain.topicCount;
+                return bTaxonomyPercentage - aTaxonomyPercentage;
+            });
+        });
+
+        const tbody = document.querySelector('tbody');
+
+        data.Subdomain.forEach(subdomain => {
+            const subdomainPercentage = ((subdomain.topicCount / totalTopicCount) * 100).toFixed(2);
+
+            // Add a row for the first taxonomy level with rowspan for the subdomain cells
+            const firstTaxonomy = subdomain.taxonomy[0];
+            const firstTaxonomyPercentage = ((firstTaxonomy.count / subdomain.topicCount) * 100).toFixed(2);
+
+            const firstRow = document.createElement('tr');
+            firstRow.innerHTML = `
+            <td rowspan="${subdomain.taxonomy.length}">${subdomain.id}</td>
+            <td rowspan="${subdomain.taxonomy.length}">${subdomain.topicCount}</td>
+            <td rowspan="${subdomain.taxonomy.length}">${subdomainPercentage}%</td>
+            <td>${firstTaxonomy.TaxonomyLevel}</td>
+            <td>${firstTaxonomy.count}</td>
+            <td>${firstTaxonomyPercentage}%</td>
+        `;
+
+            tbody.appendChild(firstRow);
+
+            // Add rows for the remaining taxonomy levels without the subdomain cells
+            for (let i = 1; i < subdomain.taxonomy.length; i++) {
+                const taxonomy = subdomain.taxonomy[i];
+                const taxonomyPercentage = ((taxonomy.count / subdomain.topicCount) * 100).toFixed(2);
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                <td>${taxonomy.TaxonomyLevel}</td>
+                <td>${taxonomy.count}</td>
+                <td>${taxonomyPercentage}%</td>
+            `;
+
+                tbody.appendChild(tr);
+            }
+        });
+        let pieData = data.Subdomain.map(subdomain => ({
+            id: subdomain.id,
+            value: subdomain.topicCount
+        }));
+
+        return;
+    }
+    document.getElementById('Course5062COPP6Y').addEventListener('click', function (event) {
+        document.getElementById('courseObjective').style.display = "block";
+        document.querySelector('tbody').innerHTML = '';
+        getCourseInfo("5062COPP6Y");
+    });
+    document.getElementById('CourseXM_40020').addEventListener('click', function (event) {
+        document.getElementById('courseObjective').style.display = "block";
+        document.querySelector('tbody').innerHTML = '';
+        getCourseInfo("XM_40020");
+    });
+</script>

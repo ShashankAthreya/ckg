@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Bootstrap JavaScript and Popper.js (required for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            /* ensures there are no double lines */
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            /* adds border to the table, header cells, and data cells */
+        }
+
+        th,
+        td {
+            padding: 8px 12px;
+            /* adds some padding inside each cell for better appearance */
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            /* light gray background color for headers */
+        }
+    </style>
+
+    <title>Curriculum KG</title>
+</head>
+
+<body>
+
+    <h1 id="Title">Course Comparision</h1>
+    <h3>Comparision between Course5062COPP6Y and CourseXM_40020</h3>
+    <svg width="800" height="600"></svg>
+    <div id="tooltip"
+        style="position: absolute; opacity: 0; padding: 10px; background: lightgrey; border: 1px solid black;"></div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+<script>
+    function visualizeSimilarities(data) {
+        const svg = d3.select("svg");
+        const width = +svg.attr("width");
+        const height = +svg.attr("height");
+
+        const xScale = d3.scaleBand()
+            .domain(data.overlaps.map(d => d.subdomain))
+            .range([0, width])
+            .padding(0.2);
+
+        const yScale = d3.scaleLinear()
+            .domain([0, d3.max(data.overlaps, d => d.minTopics)])
+            .range([height, 0]);
+
+        const tooltip = d3.select("#tooltip");
+
+        svg.selectAll('rect')
+            .data(data.overlaps)
+            .enter().append('rect')
+            .attr('x', d => xScale(d.subdomain))
+            .attr('y', d => yScale(d.minTopics))
+            .attr('width', xScale.bandwidth())
+            .attr('height', d => height - yScale(d.minTopics))
+            .attr('fill', 'steelblue')
+            .on('mouseover', (d, i) => {
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                tooltip.html(`Subdomain: ${d.subdomain}<br/>Topics: ${d.minTopics}`)
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+            })
+            .on('mouseout', (d) => {
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
+
+        svg.append('g')
+            .attr('transform', `translate(0, ${height})`)
+            .call(d3.axisBottom(xScale));
+
+        svg.append('g')
+            .call(d3.axisLeft(yScale));
+    }
+
+    function computeSimilarities(course1, course2) {
+        const overlaps = [];
+        let totalSimilarityScore = 0;
+
+        course1.Subdomain.forEach(subdomain1 => {
+            const matchingSubdomain = course2.Subdomain.find(subdomain2 => subdomain1.id === subdomain2.id);
+            if (matchingSubdomain) {
+                const overlap = {
+                    subdomain: subdomain1.id,
+                    minTopics: Math.min(subdomain1.topicCount, matchingSubdomain.topicCount),
+                    taxonomyOverlap: []
+                };
+
+                let subdomainSimilarityScore = overlap.minTopics;
+                subdomain1.taxonomy.forEach(taxonomy1 => {
+                    const matchingTaxonomy = matchingSubdomain.taxonomy.find(tax2 => tax2.TaxonomyLevel === taxonomy1.TaxonomyLevel);
+                    if (matchingTaxonomy) {
+                        const minCount = Math.min(taxonomy1.count, matchingTaxonomy.count);
+                        overlap.taxonomyOverlap.push({
+                            level: taxonomy1.TaxonomyLevel,
+                            count: minCount
+                        });
+                        subdomainSimilarityScore += minCount;
+                    }
+                });
+
+                totalSimilarityScore += subdomainSimilarityScore;
+                overlaps.push(overlap);
+            }
+        });
+
+        return {
+            totalSimilarityScore,
+            overlaps
+        };
+    }
+
+    async function getCourseInfo(course1, course2) {
+        const response1 = await fetch(`/course/objective?id=${course1}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        const data1 = await response1.json();
+        const response2 = await fetch(`/course/objective?id=${course2}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        const data2 = await response2.json();
+
+        const result = computeSimilarities(data1, data2);
+        visualizeSimilarities(result);
+        return
+    }
+    getCourseInfo("5062COPP6Y", "XM_40020")
+</script>
