@@ -1,0 +1,128 @@
+index,id,sub_domain,taxonomy_level
+1,Web,Web Applications,Understand
+1.1,Web_Application,Web Applications,Remember
+1.2,Web_Foundation,Web Applications,Remember
+2,Knowledge_Base,Knowledge Organisation,Understand
+2.1,Building_Knowledge_Repositories,Knowledge Organisation,Understand
+2.1.1,Manifest_Knowledge,Knowledge Organisation,Understand
+2.1.2,Latent_Knowledge,Knowledge Organisation,Understand
+2.2,Different_Knowledge_Bases,Knowledge Organisation,Understand
+2.2.1,WordNet,Knowledge Organisation,Remember
+2.2.2,YAGO,Knowledge Organisation,Remember
+2.2.3,FreeBase,Knowledge Organisation,Remember
+2.2.4,DBpedia,Knowledge Organisation,Remember
+2.2.5,WikiData,Knowledge Organisation,Remember
+2.2.6,BabelNet,Knowledge Organisation,Remember
+2.3,Knowledge_Base_Languages,Knowledge Organisation,Remember
+2.3.1,RDF,Database,Remember
+2.3.1.1,RDF_Schema,Database,Remember
+2.3.1.2,SPARQL,Database,Remember
+3,Natural_Language_Processing,Natural Language Processing,Analyse
+3.1,Knowledge_Acquisition,Natural Language Processing,Apply
+3.2,NLP_Preprocessing,Natural Language Processing,Apply
+3.2.1,Tokenization,Natural Language Processing,Understand
+3.2.2,Lemmatization,Natural Language Processing,Understand
+3.2.3,Stemming,Natural Language Processing,Understand
+3.2.4,Stopword_Removal,Natural Language Processing,Understand
+3.2.5,POS_Tagging,Natural Language Processing,Understand
+3.2.5.1,POS_Tagging_Methods,Natural Language Processing,Remember
+3.2.5.2,Hidden_Markov_Model,Natural Language Processing,Remember
+3.2.6,Parsing,Natural Language Processing,Understand
+3.3,Information_Extraction,Natural Language Processing,Analyse
+3.3.1,Name_Entity_Recognition,Natural Language Processing,Apply
+3.3.1.1,NeuroNER,Natural Language Processing,Understand
+3.3.1.2,Entity_Linking,Natural Language Processing,Understand
+3.3.1.2.1,Candidate_Entity_Generation,Natural Language Processing,Understand
+3.3.1.2.1.1,Dictionary_Based_Techniques,Natural Language Processing,Understand
+3.3.1.2.1.2,Surface_form_expansion,Natural Language Processing,Understand
+3.3.1.2.1.2.1,Heuristic-based_Method,Natural Language Processing,Understand
+3.3.1.2.1.2.2,Supervised_learning_Method,Natural Language Processing,Understand
+3.3.1.2.1.3,Search_engine_Based,Natural Language Processing,Understand
+3.3.1.2.2,Candidate_Entity_Ranking,Natural Language Processing,Understand
+3.3.1.2.2.1,Context_independent_features,Natural Language Processing,Understand
+3.3.1.2.2.2,Context_dependant_features,Natural Language Processing,Understand
+3.3.1.2.2.3,Supervised_Ranking_Methods,Natural Language Processing,Understand
+3.3.1.2.2.4,Unsupervised_Ranking_Methods,Natural Language Processing,Understand
+3.3.1.2.3,Unlinkable_Mention_Prediction,Natural Language Processing,Understand
+3.3.2,Relation_Extraction,Natural Language Processing,Analyse
+3.3.2.1,Traditional_Extraction,Natural Language Processing,Apply
+3.3.2.1.1,Hand-written_patterns,Natural Language Processing,Understand
+3.3.2.1.2,Supervised_Machine_Learning,Natural Language Processing,Understand
+3.3.2.1.3,Semi_supervised_Machine_Learning,Natural Language Processing,Understand
+3.3.2.1.3.1,Bootstrapping,Natural Language Processing,Understand
+3.3.2.1.3.2,Distant_Supervision,Natural Language Processing,Understand
+3.3.2.2,Open_Extraction,Natural Language Processing,Apply
+3.3.2.2.1,Text_Runner,Natural Language Processing,Understand
+3.3.2.2.2,ReVerb,Natural Language Processing,Understand
+3.3.2.2.3,Patty,Natural Language Processing,Understand
+3.3.2.2.4,NELL,Natural Language Processing,Understand
+3.3.2.2.5,ClausIE,Natural Language Processing,Understand
+3.3.2.2.6,Neural_Open_Relation_Extraction,Natural Language Processing,Understand
+3.4,Disambiguation,Natural Language Processing,Apply
+3.4.1,Variants,Natural Language Processing,Understand
+3.4.1.1,Lexical_Sample_Task,Natural Language Processing,Understand
+3.4.1.2,All-words_task,Natural Language Processing,Understand
+3.4.2,Evaluations,Natural Language Processing,Understand
+3.4.2.1,Extrinsic_evaluation,Natural Language Processing,Understand
+3.4.2.2,Intrinsic_evaluation,Natural Language Processing,Understand
+3.4.3,Baseline,Natural Language Processing,Understand
+3.4.4,Methods,Natural Language Processing,Apply
+3.4.4.1,Supervised_Methods,Natural Language Processing,Understand
+3.4.4.1.1,WordNet_Database_of_meaning,Natural Language Processing,Understand
+3.4.4.2,Thesaurus/Dictionary_Methods,Natural Language Processing,Understand
+3.4.4.2.1,Simplified_Lesk_Algorithm,Natural Language Processing,Understand
+3.4.4.2.2,Corpus_Lesk_Algorithm,Natural Language Processing,Understand
+3.4.4.2.3,Graph-based_methods,Natural Language Processing,Understand
+3.4.4.3,Semi-supervised_Learning,Natural Language Processing,Understand
+3.4.4.3.1,Yarosky’s_Algorithm,Natural Language Processing,Understand
+3.4.4.3.2,Google’s_way,Natural Language Processing,Understand
+2.4,Knowledge_Consumption,Knowledge Organisation,Apply
+2.4.1,Word2Vec,Knowledge Organisation,Understand
+2.4.1.1,Skip_gram,Knowledge Organisation,Understand
+2.4.1.2,Continuous_Bag_of_Word,Knowledge Organisation,Understand
+2.4.2,Statistical_Inference_on_KGs,Knowledge Organisation,Understand
+2.4.2.1,Link_Prediction,Knowledge Organisation,Understand
+2.4.2.1.1,Rule-based_Methods,Knowledge Organisation,Understand
+2.4.2.1.1.1,AMIE,Knowledge Organisation,Understand
+2.4.2.1.1.2,Non-monotonic_Learning,Knowledge Organisation,Understand
+2.4.2.1.2,Probabilistic_Models,Knowledge Organisation,Understand
+2.4.2.1.2.1,Random_Walks_Path_ranking_Algorithm,Knowledge Organisation,Understand
+2.4.2.1.3,Factorization_Models,Knowledge Organisation,Understand
+2.4.2.1.3.1,Tensors,Knowledge Organisation,Understand
+2.4.2.1.4,Embedding_Models,Knowledge Organisation,Understand
+2.4.2.1.4.1,Latent_Distance_Model,Knowledge Organisation,Understand
+2.4.2.1.4.1.1,TransE,Knowledge Organisation,Understand
+4,Reasoning,Knowledge Organisation,Analyse
+4.1,Ontology,Knowledge Organisation,Understand
+4.1.1,Ontological_Languages,Knowledge Organisation,Understand
+4.1.2,Semantic_Web,Knowledge Organisation,Understand
+4.1.3,OWL,Knowledge Organisation,Understand
+4.1.4,OWL2,Knowledge Organisation,Understand
+4.2,Rules,Knowledge Organisation,Understand
+4.2.1,Safe_Rules_Horn_Clauses,Knowledge Organisation,Understand
+4.2.2,Existentially_Quantified_Rules,Knowledge Organisation,Understand
+4.2.3,Translating_an_Ontology_into_a_Rule,Knowledge Organisation,Understand
+4.2.4,Materialization,Knowledge Organisation,Understand
+4.2.4.1,Full_Materialization_Alternatives,Knowledge Organisation,Understand
+4.2.4.1.1,Reasoning_at_Query_Time,Knowledge Organisation,Understand
+4.2.4.1.1.1,Top-Down_Evaluation,Knowledge Organisation,Understand
+4.2.4.1.1.2,Bottom-Up_Evaluation,Knowledge Organisation,Understand
+4.2.5,Reasoning_with_Existential_Rules,Knowledge Organisation,Understand
+4.2.5.1,Skolen_Chase_Algorithm,Knowledge Organisation,Understand
+4.2.5.2,Restricted_Chase_Algorithm,Knowledge Organisation,Understand
+4.3,Fact_Checking,Knowledge Organisation,Apply
+4.3.1,Misinformation_on_Web,Knowledge Organisation,Understand
+4.3.2,Fact_checking_Difficulty,Knowledge Organisation,Understand
+4.3.3,Fact_Checking_from_Social_Networks_and_Texts,Knowledge Organisation,Understand
+4.3.4,Goals_of_Fact-checking,Knowledge Organisation,Understand
+4.3.5,Previous_Works,Knowledge Organisation,Understand
+4.3.5.1,Information_Credibility_Paper,Knowledge Organisation,Understand
+4.3.5.2,DeClarE:_Evidence-aware_DL,Knowledge Organisation,Understand
+4.3.5.3,ExFaKT,Knowledge Organisation,Understand
+5,Privacy_and_Fairness_on_the_Web,Privacy,Apply
+5.1,Privacy_on_the_Web,Privacy,Understand
+5.1.1,Entropy,Privacy,Understand
+5.1.2,DIFF-PRIV,Privacy,Understand
+5.1.3,Construct_distributed_representation_of_the_topics,Privacy,Understand
+5.1.4,Evaluation,Privacy,Understand
+5.2,Fairness,Privacy,Understand
