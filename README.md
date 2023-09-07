@@ -7,9 +7,6 @@ This is the repo for Curriculum Knowledge Graph
 # Start Server
 // nodemon start
 
-# Download Fuseki here
-https://jena.apache.org/documentation/fuseki2/
-
 # Initialise Fuseki Server
-./path_to_fuseki/fuseki-server --file=./data.ttl /ckg
+./apache-jena-fuseki-4.9.0/fuseki-server --file=./data.ttl /ckg
 

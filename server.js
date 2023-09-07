@@ -267,6 +267,31 @@ app.get('/node/details', async (req, res) => {
   }
 });
 
+app.get('/course/details', async (req, res) => {
+
+  const detailsQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  SELECT ?course ?courseName WHERE {
+    ?course a ex:Course .
+    ?course ex:name ?courseName .
+  }
+  `;
+
+  const courseResponse = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: detailsQuery
+  });
+
+  const courses = await courseResponse.json();
+  res.json({
+    courses: courses.results.bindings.map(binding => ({ name: binding.courseName.value, id: binding.course.value.replace('http://localhost:8080/', '')})),
+  });
+});
+
+
 app.post('/node/connect', async (req, res) => {
   const parent = req.body.parent;
   const child = req.body.child;
@@ -292,10 +317,10 @@ app.post('/node/connect', async (req, res) => {
 
   if (response.ok) {
     res.json({ success: true });
-    console.log("Parent Added")
+    // console.log("Parent Added")
   } else {
     const errorText = await response.text();
-    res.json({ success: false, message: 'Failed to Add Parent node ' + nodeId, error: errorText });
+    res.json({ success: false, message: 'Failed to Add Parent node ' + parent, error: errorText });
   }
 });
 
@@ -413,6 +438,109 @@ app.get('/course/objective', async (req, res) => {
     res.json(finalResponse)
   } else {
     res.json({ message: "No data found for the provided Course." });
+  }
+});
+
+app.get('/query/subdomain/topics', async (req, res) => {
+  const nodesQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  SELECT ?id ?name ?subDomain WHERE {
+    ?id a ex:Topic ;
+          ex:name ?name ;
+          ex:sub_domain ?subDomain .
+  }  
+  `;
+  const subdomainQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  SELECT ?id ?name WHERE {
+      ?id a ex:SubDomain ;
+                ex:name ?name .
+  }`;
+  
+  const nodesResponse = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: nodesQuery
+  });
+
+  const subdomainResponse = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: subdomainQuery
+  });
+
+  const nodes = await nodesResponse.json();
+  const subdomains = await subdomainResponse.json();
+
+  res.json({
+    nodes: nodes.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/', ''), subDomain: binding.subDomain.value.split(', ').map(sd => sd.replace('http://localhost:8080/', ''))})),
+    subdomains: subdomains.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/', '') })),
+  });
+});
+
+app.post('/add/subdomain', async (req, res) => {
+  const addQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  INSERT DATA {
+      ex:SubDomain${req.body.id} a ex:SubDomain ;
+          ex:name "${req.body.name}" ;
+          ex:domain ex:DomainComputerScience .
+  }
+  `;
+
+  const response = await fetch(endpoint_update, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-update'
+    },
+    body: addQuery
+  });
+
+  if (response.ok) {
+    console.log("Node Added");
+    res.json({ success: true });
+  } else {
+    const errorText = await response.text();
+    res.json({ success: false, message: 'Failed to Add node ' + req.body.id, error: errorText });
+  }
+});
+
+app.post('/add/course', async (req, res) => {
+  const subdomains = req.body.subdomains; 
+  const rootTopics = req.body.rootTopics; 
+  console.log("HERE");
+  const subdomainValues = subdomains.map(sd => `ex:${sd}`).join(', ');
+  const rootTopicValues = rootTopics.map(rt => `ex:${rt}`).join(', ');
+  console.log(subdomainValues);
+  const addQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  INSERT DATA {
+      ex:Course${req.body.id} a ex:Course ;
+          ex:name "${req.body.name}" ;
+          ex:course_code "${req.body.id}";
+          ex:sub_domain ${subdomainValues};
+          ex:root_topic ${rootTopicValues} .
+  }
+  `;
+
+  const response = await fetch(endpoint_update, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-update'
+    },
+    body: addQuery
+  });
+
+  if (response.ok) {
+    console.log("Course Added");
+    res.json({ success: true });
+  } else {
+    const errorText = await response.text();
+    res.json({ success: false, message: 'Failed to Add Course ' + req.body.id, error: errorText });
   }
 });
 

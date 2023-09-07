@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Bootstrap JavaScript and Popper.js (required for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+    <title>Curriculum KG</title>
+</head>
+
+<body>
+    <input type="text" id="courseCode" placeholder="Enter Course Code">
+<button onclick="fetchGraphData()">Load Graph</button>
+
+</body>
+
+<script>
+    // Assuming CSV is stored as a string
+    let currentCourseCode = "5062COPP6Y"; // default course code
+
+function fetchGraphData() {
+  // Get value from the text box
+  const courseCode = document.getElementById('courseCode').value;
+  
+  if(courseCode) {
+    currentCourseCode = courseCode;
+    window.location.href = `/?courseCode=${currentCourseCode}`;
+  }
+}
+</script>

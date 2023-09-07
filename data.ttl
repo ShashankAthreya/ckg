@@ -1281,382 +1281,382 @@
     :bloom_taxonomy_level :BTL_Remember ] .
 :SPARQL a :Topic; 
 :name "SPARQL"; 
-:sub_domain :SubDomainDatabaseQuerying ;
+:sub_domain :SubDomainDatabase ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Remember ] .
 :Natural_Language_Processing a :Topic; 
 :name "Natural Language Processing(NLP)"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Analyse ] ;
     :has_topics :Knowledge_Acquisition, :NLP_Preprocessing, :Disambiguation, :Information_Extraction, :Reasoning, :Disambiguation  .
 :Knowledge_Acquisition a :Topic; 
 :name "Knowledge Acquisition"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Apply ] .
 :NLP_Preprocessing a :Topic; 
 :name "NLP Preprocessing"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Apply ] ;
     :has_topics :Tokenization, :Lemmatization, :Stemming, :Stopword_Removal, :POS_Tagging, :Parsing .
 :Tokenization a :Topic; 
 :name "Tokenization"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Lemmatization a :Topic; 
 :name "Lemmatization"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Stemming a :Topic; 
 :name "Stemming"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Stopword_Removal a :Topic; 
 :name "Stopword Removal"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :POS_Tagging a :Topic; 
 :name "POS(Part Of Speech) Tagging"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] ;
     :has_topics :POS_Tagging_Methods .
 :POS_Tagging_Methods a :Topic; 
 :name "Methods for POS Tagging"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Remember ] ;
     :has_topics :Hidden_Markov_Model .
 :Hidden_Markov_Model a :Topic; 
 :name "Hidden Markov Model (HMM)"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Remember ] .
 :Parsing a :Topic; 
 :name "Parsing"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Information_Extraction a :Topic; 
 :name "Information Extraction"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Analyse ] ;
     :has_topics :Name_Entity_Recognition, :Relation_Extraction .
 :Name_Entity_Recognition a :Topic; 
 :name "Name Entity Recognition (NER)"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Apply ] ;
     :has_topics :Entity_Linking, :NeuroNER .
 :NeuroNER a :Topic; 
 :name "NeuroNER"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Entity_Linking a :Topic; 
 :name "Entity Linking"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] ;
     :has_topics :Candidate_Entity_Generation, :Candidate_Entity_Ranking, :Unlinkable_Mention_Prediction .
 :Candidate_Entity_Generation a :Topic; 
 :name "Candidate Entity Generation,"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] ;
     :has_topics :Dictionary_Based_Techniques, :Surface_form_expansion, :Search_engine_Based .
 :Dictionary_Based_Techniques a :Topic; 
 :name "Dictionary Based Techniques"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Surface_form_expansion a :Topic; 
 :name "Surface form expansion"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] ;
     :has_topics :Heuristic-based_Method, :Supervised_learning_Method .
 :Heuristic-based_Method a :Topic; 
 :name "Heuristic-based Method"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Supervised_learning_Method a :Topic; 
 :name "Supervised learning Method"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Search_engine_Based a :Topic; 
 :name "Based on search engines"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Candidate_Entity_Ranking a :Topic; 
 :name "Candidate Entity Ranking,"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] ;
     :has_topics :Context_independent_features, :Context_dependant_features, :Supervised_Ranking_Methods, :Unsupervised_Ranking_Methods .
 :Context_independent_features a :Topic; 
 :name "Context independent features"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Context_dependant_features a :Topic; 
 :name "Context dependant features"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Supervised_Ranking_Methods a :Topic; 
 :name "Supervised Ranking Methods"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Unsupervised_Ranking_Methods a :Topic; 
 :name "Unsupervised Ranking Methods"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Unlinkable_Mention_Prediction a :Topic; 
 :name "Unlinkable Mention Prediction"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Relation_Extraction a :Topic; 
 :name "Relation Extraction (RE)"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Analyse ] ;
     :has_topics :Traditional_Extraction, :Open_Extraction .
 :Traditional_Extraction a :Topic; 
 :name "Traditional Extraction"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Apply ] ;
     :has_topics :Hand-written_patterns, :Supervised_Machine_Learning, :Semi_supervised_Machine_Learning .
 :Hand-written_patterns a :Topic; 
 :name "Hand-written patterns"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Supervised_Machine_Learning a :Topic; 
 :name "Supervised Machine Learning"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Semi_supervised_Machine_Learning a :Topic; 
 :name "Semi-supervised Machine Learning"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] ;
     :has_topics :Bootstrapping, :Distant_Supervision .
 :Bootstrapping a :Topic; 
 :name "Bootstrapping(using seeds)"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Distant_Supervision a :Topic; 
 :name "Distant Supervision"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Open_Extraction a :Topic; 
 :name "Open (Relation/Information) Extraction"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Apply ] ;
     :has_topics :Text_Runner, :ReVerb, :Patty, :NELL, :ClausIE, :Neural_Open_Relation_Extraction .
 :Text_Runner a :Topic; 
 :name "Text Runner"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :ReVerb a :Topic; 
 :name "ReVerb"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Patty a :Topic; 
 :name "Patty"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :NELL a :Topic; 
 :name "NELL(Never Ending Learning)"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :ClausIE a :Topic; 
 :name "ClausIE"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Neural_Open_Relation_Extraction a :Topic; 
 :name "Neural Open Relation Extraction"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Disambiguation a :Topic; 
 :name "Disambiguation"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Apply ] ;
     :has_topics :Variants, :Evaluations, :Baseline, :Methods .
 :Variants a :Topic; 
 :name "Variants"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] ;
     :has_topics :Lexical_Sample_Task, :All-words_task .
 :Lexical_Sample_Task a :Topic; 
 :name "Lexical Sample Task"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :All-words_task a :Topic; 
 :name "All-words task"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Evaluations a :Topic; 
 :name "Evaluations"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] ;
     :has_topics :Extrinsic_evaluation, :Intrinsic_evaluation .
 :Extrinsic_evaluation a :Topic; 
 :name "Extrinsic evaluation"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Intrinsic_evaluation a :Topic; 
 :name "Intrinsic evaluation"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Baseline a :Topic; 
 :name "Baseline"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Methods a :Topic; 
 :name "Methods"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Apply ] ;
     :has_topics :Supervised_Methods, :Thesaurus_Dictionary_Methods, :Semi-supervised_Learning .
 :Supervised_Methods a :Topic; 
 :name "Supervised Methods"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] ;
     :has_topics :WordNet_Database_of_meaning .
 :WordNet_Database_of_meaning a :Topic; 
 :name "Tag set - Database of meaning(WordNet)"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Thesaurus_Dictionary_Methods a :Topic; 
 :name "Thesaurus/Dictionary Methods"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] ;
     :has_topics :Simplified_Lesk_Algorithm, :Corpus_Lesk_Algorithm, :Graph-based_methods .
 :Simplified_Lesk_Algorithm a :Topic; 
 :name "Simplified Lesk Algorithm"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Corpus_Lesk_Algorithm a :Topic; 
 :name "Corpus Lesk Algorithm"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Graph-based_methods a :Topic; 
 :name "Graph-based methods"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Semi-supervised_Learning a :Topic; 
 :name "Semi-supervised Learning"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] ;
     :has_topics :Yaroskys_Algorithm, :Googles_way .
 :Yaroskys_Algorithm a :Topic; 
 :name "Yarosky's Algorithm"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 :Googles_way a :Topic; 
 :name "Google's way"; 
-:sub_domain :SubDomainNLP ;
+:sub_domain :SubDomainNaturalLanguageProcessing ;
 :in_course [
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
@@ -1981,8 +1981,6 @@
     :course :CourseXM_40020;
     :bloom_taxonomy_level :BTL_Understand ] .
 
-
-
 :CourseXM_40020 a :Course ;
                 :name "Web Data Processing Systems" ;
                 :course_code "XM_40020" ;
@@ -2001,12 +1999,12 @@
                              :name "Artificial Intellignece" ;
                              :domain :DomainComputerScience .
 
-:SubDomainNLP a :SubDomain ;
+:SubDomainNaturalLanguageProcessing a :SubDomain ;
                              :name "Natural Language Processing" ;
                              :domain :DomainComputerScience .
 
-:SubDomainDatabaseQuerying a :SubDomain ;
-                             :name "Database Querying" ;
+:SubDomainDatabase a :SubDomain ;
+                             :name "Database" ;
                              :domain :DomainComputerScience .
 
 :SubDomainPrivacy a :SubDomain ;

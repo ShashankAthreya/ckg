@@ -50,10 +50,11 @@
 <body>
 
     <h1 id="Title">Course Objective</h1>
-    <button type="button" id="Course5062COPP6Y" class="btn btn-outline-info" data-bs-toggle="button" data-toggle="modal"
+    <div id="buttonContainer"></div>
+    <!-- <button type="button" id="Course5062COPP6Y" class="btn btn-outline-info" data-bs-toggle="button" data-toggle="modal"
         data-target="#nodeModal">Course5062COPP6Y</button>
     <button type="button" id="CourseXM_40020" class="btn btn-outline-info" data-bs-toggle="button" data-toggle="modal"
-        data-target="#nodeModal">CourseXM_40020</button>
+        data-target="#nodeModal">CourseXM_40020</button> -->
     <div id="courseObjective" style="display: none;">
         <table id="courseObjectiveTable" cellspacing="0" cellpadding="5">
             <thead>
@@ -294,14 +295,66 @@
 
         return;
     }
-    document.getElementById('Course5062COPP6Y').addEventListener('click', function (event) {
+    async function getCourses() {
+        const response = await fetch(`/course/details`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+    const data = await response.json();
+    console.log("Fetched Data:", data);  // Debug log
+    return data.courses;
+    }
+    function createCourseButton(course) {
+    const button = document.createElement('button');
+    button.type = "button";
+    button.id = course.id; // Use the course ID directly
+    button.className = "btn btn-outline-info";
+    button.setAttribute("data-bs-toggle", "button");
+    button.setAttribute("data-toggle", "modal");
+    button.setAttribute("data-target", "#nodeModal");
+    button.innerText = course.name;  // Use the course name as button text
+
+    button.addEventListener('click', function (event) {
         document.getElementById('courseObjective').style.display = "block";
         document.querySelector('tbody').innerHTML = '';
-        getCourseInfo("5062COPP6Y");
+        // You might need to strip 'Course' prefix from the ID when fetching course info
+        getCourseInfo(course.id.replace('Course', ''));
     });
-    document.getElementById('CourseXM_40020').addEventListener('click', function (event) {
-        document.getElementById('courseObjective').style.display = "block";
-        document.querySelector('tbody').innerHTML = '';
-        getCourseInfo("XM_40020");
+
+    return button;
+}
+
+async function populateButtons() {
+    const courses = await getCourses();
+    
+    console.log("Courses:", courses);  // Debug log
+
+    const buttonContainer = document.getElementById('buttonContainer');
+    
+    if (!buttonContainer) {
+        console.error("Button container not found!");  // Debug log
+        return;
+    }
+
+    courses.forEach(course => {
+        const button = createCourseButton(course);
+        buttonContainer.appendChild(button);
     });
+}
+
+populateButtons();
+
+
+    // document.getElementById('Course5062COPP6Y').addEventListener('click', function (event) {
+    //     document.getElementById('courseObjective').style.display = "block";
+    //     document.querySelector('tbody').innerHTML = '';
+    //     getCourseInfo("5062COPP6Y");
+    // });
+    // document.getElementById('CourseXM_40020').addEventListener('click', function (event) {
+    //     document.getElementById('courseObjective').style.display = "block";
+    //     document.querySelector('tbody').innerHTML = '';
+    //     getCourseInfo("XM_40020");
+    // });
 </script>

@@ -586,9 +586,21 @@ function _color(d3, graph) {
   return d => d3.interpolateRainbow(scale(d.degree));
 }
 
+// function _graph(d3) {
+//   return (d3.json("http://localhost:3000/query/data?id=5062COPP6Y"))
+// }
+
+
 function _graph(d3) {
-  return (d3.json("http://localhost:3000/query/data?id=5062COPP6Y"))
+  // Parse the current URL
+  const urlParams = new URLSearchParams(window.location.search);
+  
+  // Get the courseCode from the URL. If it's not present, use a default value.
+  const courseCode = urlParams.get('courseCode') || 'NOPE';
+  
+  return (d3.json(`http://localhost:3000/query/data?id=${courseCode}`));
 }
+
 
 function _d3(require) {
   return (require("d3@5"))
@@ -596,7 +608,6 @@ function _d3(require) {
 
 export default function define(runtime, observer) {
   const main = runtime.module();
-  // function toString() { return this.url; }
   main.variable(observer("chart")).define("chart", ["graph", "d3", "width", "DOM", "_", "color", "drag"], _chart);
   main.variable(observer("drag")).define("drag", ["d3"], _drag);
   main.variable(observer("color")).define("color", ["d3", "graph"], _color);
