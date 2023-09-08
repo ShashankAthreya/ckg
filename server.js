@@ -16,10 +16,10 @@ app.get('/query/data', async (req, res) => {
   PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
   PREFIX math: <http://www.w3.org/2005/xpath-functions/math#>
   
-  SELECT ?id ?name (GROUP_CONCAT(?subDomain;separator=", ") as ?subDomains) ?taxonomyValue (math:exp(?taxonomyValue * math:log(2)) AS ?degree) WHERE {
+  SELECT ?id ?name (GROUP_CONCAT(DISTINCT ?subDomain;separator=", ") as ?subDomains) (AVG(?taxonomyValue) AS ?avgTaxonomyValue) (math:exp(AVG(?taxonomyValue) * math:log(2)) AS ?degree) WHERE {
       ?id ex:name ?name .
       ?id ex:sub_domain ?subDomain .
-      ?id ex:in_course/ex:course ?course .         # Add this line
+      ?id ex:in_course/ex:course ?course .         
       ?id ex:in_course/ex:bloom_taxonomy_level ?btl .
       ?btl ex:value ?taxonomyValueRaw .
       BIND(xsd:decimal(?taxonomyValueRaw) AS ?taxonomyValue)
@@ -28,17 +28,21 @@ app.get('/query/data', async (req, res) => {
       FILTER NOT EXISTS { ?id a ex:SubDomain } 
       FILTER NOT EXISTS { ?id a ex:Domain } 
   }
-  GROUP BY ?id ?name ?taxonomyValue 
-  
+  GROUP BY ?id ?name 
+  ORDER BY ?id  
   `;
   const linksQuery = `
   PREFIX ex: <http://localhost:8080/>
   SELECT ?source ?target WHERE {
-    ?source a ex:Topic ;
-      ex:in_course/ex:course ?course ;
-      ex:has_topics ?target .
-    FILTER (?course = ex:Course${course})
-  }
+  ?source a ex:Topic ;
+    ex:in_course/ex:course ?course ;
+    ex:has_topics ?target .
+
+  ?target ex:in_course/ex:course ?course . 
+
+  FILTER (?course = ex:Course${course})
+}
+
   `;
   const subdomainQuery = `
   PREFIX ex: <http://localhost:8080/>
@@ -141,28 +145,28 @@ app.get('/query/data', async (req, res) => {
 app.post('/delete/node', async (req, res) => {
   const nodeId = req.body.id;
   
-  const askQuery = `
-    PREFIX ex: <http://localhost:8080/>
-    ASK {
-      ?course ex:root_topic ex:${nodeId} . 
-      ?course a ex:Course .
-    }
-  `;
+  // const askQuery = `
+  //   PREFIX ex: <http://localhost:8080/>
+  //   ASK {
+  //     ?course ex:root_topic ex:${nodeId} . 
+  //     ?course a ex:Course .
+  //   }
+  // `;
 
-  const askResponse = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/sparql-query'
-    },
-    body: askQuery
-  });
+  // const askResponse = await fetch(endpoint, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/sparql-query'
+  //   },
+  //   body: askQuery
+  // });
 
-  const askResult = await askResponse.json();
+  // const askResult = await askResponse.json();
 
-  if (askResult.boolean) {
-    res.json({ success: false, message: "Root Node Can't be deleted." });
-    return;  // Important: Return here to prevent the following code from executing.
-  }
+  // if (askResult.boolean) {
+  //   res.json({ success: false, message: "Root Node Can't be deleted." });
+  //   return;  // Important: Return here to prevent the following code from executing.
+  // }
 
   const deleteQuery = `
     PREFIX ex: <http://localhost:8080/>
@@ -227,7 +231,7 @@ app.post('/add/node', async (req, res) => {
 app.get('/node/details', async (req, res) => {
   const nodeId = req.query.id; 
 
-  const detailsQuery = `
+  const courseInfo = `
   PREFIX ex: <http://localhost:8080/>
   SELECT 
     (REPLACE(STR(?course), "http://localhost:8080/", "") as ?courseStr) 
@@ -239,32 +243,77 @@ app.get('/node/details', async (req, res) => {
   }  
   `;
 
-  const response = await fetch(endpoint, {
+  const generalInfo = `
+  PREFIX ex: <http://localhost:8080/>
+  SELECT ?id ?name ?subDomain WHERE{
+    ?id a ex:Topic;
+        ex:name ?name;
+        ex:sub_domain ?subDomain
+        FILTER (?id = ex:${nodeId})
+  }
+  `;
+
+  const parentInfo = `
+  PREFIX ex: <http://localhost:8080/>
+  SELECT ?id WHERE{
+    ?id a ex:Topic;
+        ex:has_topics ex:${nodeId} .
+    ex:${nodeId} a ex:Topic .
+  }
+  `;
+
+  const childrenInfo = `
+  PREFIX ex: <http://localhost:8080/>
+  SELECT ?topics WHERE{
+    ex:${nodeId} a ex:Topic;
+        ex:has_topics ?topics .
+    ?topics a ex:Topic .
+  }
+  `;
+
+  const courseResponse = await fetch(endpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/sparql-query'
     },
-    body: detailsQuery
+    body: courseInfo
   });
 
-  const responseBody = await response.json();
-  
-  // Extract the results
-  const bindings = responseBody.results.bindings;
-  
-  if (bindings.length > 0) {
-    const firstResult = bindings[0];
-    const course = firstResult.courseStr.value;
-    const btl = firstResult.btlStr.value;
+  const parentsRespone = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: parentInfo
+  });
 
-    // Format the response
-    res.json({
-      course: course,
-      btl: btl
-    });
-  } else {
-    res.json({ message: "No data found for the provided node ID." });
-  }
+  const childrenResponse = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: childrenInfo
+  });
+  
+  const generalRespone = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: generalInfo
+  });
+
+  const parentResponseBody = await parentsRespone.json();
+  const courseResponseBody = await courseResponse.json();
+  const childrenResponseBody = await childrenResponse.json();
+  const generalResponeBody = await generalRespone.json();
+  
+  res.json({
+    node: generalResponeBody.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/', ''), subDomain: binding.subDomain.value.split(', ').map(sd => sd.replace('http://localhost:8080/', ''))})),
+    courses: courseResponseBody.results.bindings.map(binding => ({id: binding.courseStr.value.replace('http://localhost:8080/', ''), btl: binding.btlStr.value})),
+    parents: parentResponseBody.results.bindings.map(binding => ({id: binding.id.value.split(', ').map(sd => sd.replace('http://localhost:8080/', ''))})),
+    children: childrenResponseBody.results.bindings.map(binding => ({id: binding.topics.value.split(', ').map(sd => sd.replace('http://localhost:8080/', ''))})),
+  });
 });
 
 app.get('/course/details', async (req, res) => {
@@ -290,7 +339,6 @@ app.get('/course/details', async (req, res) => {
     courses: courses.results.bindings.map(binding => ({ name: binding.courseName.value, id: binding.course.value.replace('http://localhost:8080/', '')})),
   });
 });
-
 
 app.post('/node/connect', async (req, res) => {
   const parent = req.body.parent;
@@ -543,6 +591,275 @@ app.post('/add/course', async (req, res) => {
     res.json({ success: false, message: 'Failed to Add Course ' + req.body.id, error: errorText });
   }
 });
+
+app.get('/node/in-course', async (req, res) => {
+  const nodeId = req.query.id;
+  const courseCode = req.query.course;
+
+  const checkQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  SELECT ?btl WHERE {
+    ex:${nodeId} a ex:Topic;
+                ex:in_course [
+                    ex:course ex:Course${courseCode};
+                    ex:bloom_taxonomy_level ?btl 
+                ] .
+  }  
+  `;
+
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: checkQuery
+  });
+
+  const responseBody = await response.json();
+  const bindings = responseBody.results.bindings;
+  
+  if (bindings.length > 0) {
+    res.json({
+      nodeExists: true,
+      inCourse: true,
+      btl: bindings[0].btl.value.replace('http://localhost:8080/', '')
+    });
+  } else {
+    res.json({ inCourse: false,  
+      nodeExists: false });
+  }
+});
+
+app.post('/add/course-to-node', async (req, res) => {
+  const { nodeId, courseCode, newBTL } = req.body;
+  console.log(nodeId, courseCode, newBTL);
+
+  const addQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  INSERT DATA {
+    ex:${nodeId} ex:in_course [
+        ex:course ex:${courseCode};
+        ex:bloom_taxonomy_level ex:${newBTL} 
+    ] .
+  }
+  `;
+  const response = await fetch(endpoint_update, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-update'
+    },
+    body: addQuery
+  });
+
+  if (response.ok) {
+    console.log("Course Added to Node");
+    res.json({ success: true });
+  } else {
+    const errorText = await response.text();
+    res.json({ success: false, message: 'Failed to Add course to node ' + req.body.id, error: errorText });
+  }
+});
+
+app.post('/delete/course-from-node', async (req, res) => {
+  const { nodeId, courseCode } = req.body;
+
+  const deleteQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  
+  DELETE WHERE {
+    ex:${nodeId} ex:in_course ?courseBlankNode .
+    ?courseBlankNode ex:course ex:${courseCode} .
+    ?courseBlankNode ex:bloom_taxonomy_level ?btl .
+  }
+  `;
+
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-update'
+    },
+    body: deleteQuery
+  });
+
+  const responseBody = await response.json();
+
+  if (response.ok) {
+    res.json({
+      success: true,
+      message: "Course removed from node successfully."
+    });
+  } else {
+    res.status(400).json({
+      success: false,
+      message: responseBody.message || 'Failed to remove course from node.'
+    });
+  }
+});
+
+app.post('/update/node-subdomain', async (req, res) => {
+  const { nodeId, newSubDomain } = req.body;
+
+  const updateQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  
+  DELETE {
+    ex:${nodeId} ex:sub_domain ?currentSubDomain .
+  }
+  INSERT {
+    ex:${nodeId} ex:sub_domain ex:${newSubDomain} .
+  }
+  WHERE {
+    ex:${nodeId} ex:sub_domain ?currentSubDomain .
+  }
+  `;
+
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-update'
+    },
+    body: updateQuery
+  });
+
+  const responseBody = await response.json();
+
+  if (response.ok) {
+    res.json({
+      success: true,
+      message: "Node's subdomain updated successfully."
+    });
+  } else {
+    res.status(400).json({
+      success: false,
+      message: responseBody.message || 'Failed to update node subdomain.'
+    });
+  }
+});
+
+app.get('/course/exists', async (req, res) => {
+  const courseId = req.query.id;
+
+  const checkQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  ASK {
+    ex:Course${courseId} a ex:Course .
+  }  
+  `;
+
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: checkQuery
+  });
+
+  const responseBody = await response.json();
+
+  res.json({
+    exists: responseBody.boolean // true if exists, false otherwise
+  });
+});
+
+app.get('/connection/exists', async (req, res) => {
+  const sourceId = req.query.source;
+  const targetId = req.query.target;
+
+  const checkQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  ASK {
+    ex:${sourceId} ex:has_topics ex:${targetId} .
+  }  
+  `;
+
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: checkQuery
+  });
+
+  const responseBody = await response.json();
+
+  res.json({
+    exists: responseBody.boolean // true if exists, false otherwise
+  });
+});
+
+app.get('/node/course-and-links', async (req, res) => {
+  const nodeId = req.query.id; 
+
+  const detailsQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  SELECT 
+    (REPLACE(STR(?course), "http://localhost:8080/", "") as ?courseStr) 
+    (REPLACE(STR(?btl), "http://localhost:8080/", "") as ?btlStr) 
+  WHERE {
+    ex:${nodeId} ex:in_course ?inCourseNode .
+    ?inCourseNode ex:course ?course ;
+                 ex:bloom_taxonomy_level ?btl .
+  }  
+  `;
+
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: detailsQuery
+  });
+
+  const responseBody = await response.json();
+  
+  // Extract the results
+  const bindings = responseBody.results.bindings;
+  
+  if (bindings.length > 0) {
+    const firstResult = bindings[0];
+    const course = firstResult.courseStr.value;
+    const btl = firstResult.btlStr.value;
+
+    // Format the response
+    res.json({
+      course: course,
+      btl: btl
+    });
+  } else {
+    res.json({ message: "No data found for the provided node ID." });
+  }
+});
+
+
+app.post('/node/remove/course', async (req, res) => {
+  const nodeId = req.body.id;
+  const course = req.body.course;
+
+  const deleteQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  DELETE WHERE {
+    ex:${nodeId} ex:in_course ?bnode .
+    ?bnode ex:course ex:${course} ;
+           ex:bloom_taxonomy_level ?btl .
+  }  
+  `;
+
+  const deleteResponse = await fetch(endpoint_update, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-update'
+    },
+    body: deleteQuery
+  });
+
+  if (deleteResponse.ok) {
+    res.json({ success: true });
+  } else {
+    const errorText = await deleteResponse.text();
+    res.json({ success: false, message: 'Failed to delete node ' + nodeId, error: errorText });
+  }
+});
+
 
 app.listen(3000, () => {
   console.log('Server listening on port 3000');

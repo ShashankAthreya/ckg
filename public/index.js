@@ -114,7 +114,7 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
     if (isConfirmed) {
       const selectedNodeIds = selectedNodes.map(node => node.id);
       // console.log(selectedNodeIds);
-      selectedNodeIds.forEach(nodeDeletion);
+      selectedNodeIds.forEach(unlinkNodeFromCourse);
       message = `The non-root nodes have been deleted. Click to refresh.`;
       confirm(message)
       location.reload(true);
@@ -134,6 +134,34 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
     feMerge.append("feMergeNode").attr("in", "coloredBlur");
     feMerge.append("feMergeNode").attr("in", "SourceGraphic");
   }
+  async function unlinkNodeFromCourse(nodeID) {
+    try {
+        const response = await fetch('/node/remove/course', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: nodeID, course: "Course" + graph.courses[0].code})
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            console.log(nodeID, 'Node deleted from course successfully.');
+            return true;
+        } else {
+            if (data.message) {
+                confirm(nodeID + ' is a root node and cannot be deleted.');
+            } else {
+                console.log('Error:', data.message);
+            }
+            return false;
+        }
+    } catch (err) {
+        console.error('Error while deleting node from course:', err);
+        throw err;  
+    }
+}
   async function nodeDeletion(nodeID) {
     try {
         const response = await fetch('/delete/node', {
@@ -297,12 +325,17 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
     event.preventDefault();
     sendSparqlUpdateQuery();
   });
+
   async function sendSparqlUpdateQuery(){
     let node_id = document.getElementById('topicUpdateKey').value
     let node_name = document.getElementById('topicUpdateName').value
     let node_subDomain = document.getElementById('topicSubDomainsUpdate').value
     let node_course = document.getElementById('courseNameUpdate').value
     let node_btl = document.getElementById('bloomTaxonomyUpdate').value
+    
+    var data = await getNodeInfo(selectedNodes[0]);
+    console.log(data);
+  
     const result = findParentsAndChildren(selectedNodes[0].id);
     try {
       let deleteResult = await nodeDeletion(selectedNodes[0].id);
@@ -316,15 +349,24 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
       if (!addResult) {
           throw new Error('Failed to add node.');
       }
-
-      let parentsAndChildren = findParentsAndChildren(selectedNodes[0].id);
       
-      for (let parent of parentsAndChildren.parents) {
-          await connectNodes(parent, node_id);
+      for (let parent of data.parents) {
+          console.log(parent.id);
+          await connectNodes(parent.id, node_id);
       }
       
-      for (let child of parentsAndChildren.children) {
-          await connectNodes(node_id, child);
+      for (let child of data.children) {
+          console.log(child.id);
+          await connectNodes(node_id, child.id);
+      }
+
+      for (let course of data.courses) {
+        if (course.id === node_course) {
+          continue
+        } else {
+          console.log(course.id, course.btl);
+          await addCourseAndBTLToNode(node_id, course.id, course.btl); 
+        }
       }
 
       confirm("Node has been updated. Click to Refresh.");
@@ -332,8 +374,32 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
   } catch (error) {
       console.error("Error updating node:", error.message);
   }
-  }
 
+  }
+  async function addCourseAndBTLToNode(nodeId, courseCode, newBTL) {
+    try {
+    const response = await fetch('/add/course-to-node', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nodeId, courseCode, newBTL })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+        console.log(data.message);
+        // Handle success, maybe provide user feedback or update UI
+    } else {
+        console.error(data.message);
+        // Handle error, maybe show an error message to the user
+    }
+    } catch (error) {
+    console.error('Error calling server:', error);
+    // Handle network or other errors, maybe show an error message to the user
+    }
+}
   function findParentsAndChildren(nodeId) {
     let parents = [];
     let children = [];
@@ -359,11 +425,17 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
     document.getElementById('topicUpdateKey').value = node.id;
     document.getElementById('topicUpdateName').value = node.name;
     document.getElementById('topicSubDomainsUpdate').value = node.subDomains[0];
+    document.getElementById('courseNameUpdate').value = "Course" + graph.courses[0].code;
 
     var data = await getNodeInfo(node);  // Using 'await' here
 
-    document.getElementById('courseNameUpdate').value = data.course;
-    document.getElementById('bloomTaxonomyUpdate').value = data.btl;
+    const courseData = data.courses.find(course => course.id === "Course" + graph.courses[0].code);
+    if (courseData) {
+        document.getElementById('bloomTaxonomyUpdate').value = courseData.btl;
+    } else {
+        // If not found, you can reset the field or handle the error
+        document.getElementById('bloomTaxonomyUpdate').value = '';
+    }
     return;
   }
 

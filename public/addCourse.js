@@ -1,4 +1,4 @@
-document.getElementById('uploadBtn').addEventListener('click', async function() {
+document.getElementById('uploadBtn').addEventListener('click', async function () {
     const file = document.getElementById('csvFile').files[0];
 
     if (!file) {
@@ -9,7 +9,7 @@ document.getElementById('uploadBtn').addEventListener('click', async function() 
     const reader = new FileReader();
     reader.readAsText(file);
 
-    reader.onload = async function(event) {
+    reader.onload = async function (event) {
         const csvContent = event.target.result;
         const rows = csvContent.split('\n');
         const uploadedSubdomains = [];
@@ -18,29 +18,29 @@ document.getElementById('uploadBtn').addEventListener('click', async function() 
         const topics = rows.map(row => {
             const [index, id] = row.split(',');
             return { index, id };
-          });
-          
-          const parentChildMap = {};
-          
-          topics.forEach(topic => {
+        });
+
+        const parentChildMap = {};
+
+        topics.forEach(topic => {
             const segments = topic.index.split('.');
-            
+
             if (segments.length === 1) {
-              // This is a root topic, so initialize its children list
-              parentChildMap[topic.id] = [];
+                // This is a root topic, so initialize its children list
+                parentChildMap[topic.id] = [];
             } else {
                 const parentIndex = segments.slice(0, -1).join('.');
                 const parentTopic = topics.find(t => t.index === parentIndex);
                 if (parentTopic) {
-                if (!parentChildMap[parentTopic.id]) {
-                    parentChildMap[parentTopic.id] = [];
-                }
-                parentChildMap[parentTopic.id].push(topic.id);
+                    if (!parentChildMap[parentTopic.id]) {
+                        parentChildMap[parentTopic.id] = [];
+                    }
+                    parentChildMap[parentTopic.id].push(topic.id);
                 }
 
             }
-          });
-          console.log(parentChildMap);
+        });
+        console.log(parentChildMap);
 
         for (let i = 1; i < rows.length; i++) {
             const columns = rows[i].split(',');
@@ -50,7 +50,7 @@ document.getElementById('uploadBtn').addEventListener('click', async function() 
             const indexDots = (columns[0].match(/\./g) || []).length;
             if (indexDots <= 0) {
                 rootTopics.push(columns[1].trim());
-            
+
             }
         }
         console.log(rootTopics);
@@ -89,24 +89,42 @@ document.getElementById('uploadBtn').addEventListener('click', async function() 
                 }
             });
 
-            console.log(subDomainIDList);  
+            console.log(subDomainIDList);
             console.log(subdomainIDMap);
             const courseCode = document.getElementById('courseCode').value;
+            const courseExists = await fetch(`/course/exists?id=${courseCode}`).then(res => res.json());
+            if (courseExists.exists) {
+            console.warn('Course already exists. Skipping...');
+            } else {
+            // Proceed with adding the course
             await courseAddition(courseCode, document.getElementById('courseName').value, [...new Set(subDomainIDList)], rootTopics);
+            }
 
             for (let i = 1; i < rows.length; i++) {
                 const [index, id, sub_domain, taxonomy_level] = rows[i].split(',').map(str => str.trim());
-        
+
                 // Use the subdomainIDMap to map the sub_domain name to its value
                 const subDomainValue = subdomainIDMap[sub_domain];
-        
-                // Now, let's add this topic/node
-                const nodeAdded = await nodeAddition(id.replace(/-/g, '_').replace(/[/'’/]/g, ''), id.replace(/_/g, ' '), "Course"+courseCode, subDomainValue, "BTL_"+taxonomy_level);
-                if (!nodeAdded) {
-                    console.error(`Failed to add node ${id}`);
+
+
+                const nodeInCourse = await fetch(`/node/in-course?id=${id.replace(/-/g, '_').replace(/[/'’/]/g, '')}&course=Course${courseCode}`).then(res => res.json());
+
+                if (nodeInCourse.inCourse) {
+                    console.warn('Node already exists in this course.');
+                } else {
+                    if (nodeInCourse.nodeExists) {
+                        console.warn('Node exists, but not in this course. Adding course and BTL...');
+                        // Add the course and BTL to the existing node (You'd need a new endpoint to handle this scenario)
+                        await addCourseAndBTLToNode(id.replace(/-/g, '_').replace(/[/'’/]/g, ''), "Course"+courseCode, "BTL_"+taxonomy_level); 
+                    } else {
+                        console.warn('Node does not exist. Creating it...');
+                        const nodeAdded = await nodeAddition(id.replace(/-/g, '_').replace(/[/'’/]/g, ''), id.replace(/_/g, ' '), "Course" + courseCode, subDomainValue, "BTL_" + taxonomy_level);
+                        if (!nodeAdded) {
+                            console.error(`Failed to add node ${id}`);
+                        }
+                    }
                 }
             }
-
             for (const [parentID, children] of Object.entries(parentChildMap)) {
                 for (const childID of children) {
                     await connectNodes(parentID.replace(/-/g, '_').replace(/[/'’/]/g, ''), childID.replace(/-/g, '_').replace(/[/'’/]/g, ''));
@@ -114,11 +132,40 @@ document.getElementById('uploadBtn').addEventListener('click', async function() 
             }
 
             window.location.href = `/?courseCode=${courseCode}`;
-            
+
         } catch (error) {
             console.error('Error fetching or processing data:', error);
             document.getElementById('result').innerText = 'Error comparing subdomains';
         }
+        // Assuming this function is part of your event handler or any logic flow
+    async function addCourseAndBTLToNode(nodeId, courseCode, newBTL) {
+        try {
+        const response = await fetch('/add/course-to-node', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nodeId, courseCode, newBTL })
+        });
+    
+        const data = await response.json();
+    
+        if (data.success) {
+            console.log(data.message);
+            // Handle success, maybe provide user feedback or update UI
+        } else {
+            console.error(data.message);
+            // Handle error, maybe show an error message to the user
+        }
+        } catch (error) {
+        console.error('Error calling server:', error);
+        // Handle network or other errors, maybe show an error message to the user
+        }
+    }
+  
+  // Example usage:
+  // addCourseAndBTLToNode('Bitcoin_Nonce', 'Course5062COPP6Y', 'BTL_Understand');
+  
         async function subDomainAddition(subDomainID, subDomainName) {
             try {
                 const response = await fetch('/add/subdomain', {
@@ -126,11 +173,11 @@ document.getElementById('uploadBtn').addEventListener('click', async function() 
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ id: subDomainID, name: subDomainName})
+                    body: JSON.stringify({ id: subDomainID, name: subDomainName })
                 });
-        
+
                 const data = await response.json();
-        
+
                 if (data.success) {
                     console.log(subDomainName, 'SubDomain Added successfully.');
                     return true;
@@ -150,11 +197,11 @@ document.getElementById('uploadBtn').addEventListener('click', async function() 
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ id: courseId, name: courseName, subdomains: courseSubDomains, rootTopics: courseRootTopics})
+                    body: JSON.stringify({ id: courseId, name: courseName, subdomains: courseSubDomains, rootTopics: courseRootTopics })
                 });
-        
+
                 const data = await response.json();
-        
+
                 if (data.success) {
                     console.log(courseName, 'Course Added successfully.');
                     return true;
@@ -176,9 +223,9 @@ document.getElementById('uploadBtn').addEventListener('click', async function() 
                     },
                     body: JSON.stringify({ id: nodeID, name: nodeName, course: nodeCourse, subDomain: nodeSubDomain, btl: nodeBTL })
                 });
-        
+
                 const data = await response.json();
-        
+
                 if (data.success) {
                     console.log(nodeID, 'Node Added successfully.');
                     return true;
@@ -197,10 +244,11 @@ document.getElementById('uploadBtn').addEventListener('click', async function() 
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ parent: parent, child: child})})
+                body: JSON.stringify({ parent: parent, child: child })
+            })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.message); 
+                    console.log(data.message);
                 })
             return
         }
