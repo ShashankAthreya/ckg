@@ -101,9 +101,9 @@ document.getElementById('uploadBtn').addEventListener('click', async function ()
             }
 
             for (let i = 1; i < rows.length; i++) {
-                const [index, id, sub_domain, taxonomy_level] = rows[i].split(',').map(str => str.trim());
+                const [index, id, sub_domain, taxonomy_level, description, prerequisite, chapter, objectives, week] = rows[i].split(',').map(str => str.trim());
 
-                // Use the subdomainIDMap to map the sub_domain name to its value
+                // Use the subdomainIDMap to map the sub_domain name to add value
                 const subDomainValue = subdomainIDMap[sub_domain];
 
 
@@ -115,7 +115,7 @@ document.getElementById('uploadBtn').addEventListener('click', async function ()
                     if (nodeInCourse.nodeExists) {
                         console.warn('Node exists, but not in this course. Adding course and BTL...');
                         // Add the course and BTL to the existing node (You'd need a new endpoint to handle this scenario)
-                        await addCourseAndBTLToNode(id.replace(/-/g, '_').replace(/[/'’/]/g, ''), "Course"+courseCode, "BTL_"+taxonomy_level); 
+                        await addCourseAndBTLToNode(id.replace(/-/g, '_').replace(/[/'’/]/g, ''), "Course"+courseCode, "BTL_"+taxonomy_level, "Chapter"+chapter.replace(/-/g, '_').replace(/[/'’/]/g, ''), objectives, week); 
                     } else {
                         console.warn('Node does not exist. Creating it...');
                         const nodeAdded = await nodeAddition(id.replace(/-/g, '_').replace(/[/'’/]/g, ''), id.replace(/_/g, ' '), "Course" + courseCode, subDomainValue, "BTL_" + taxonomy_level);
@@ -138,7 +138,7 @@ document.getElementById('uploadBtn').addEventListener('click', async function ()
             document.getElementById('result').innerText = 'Error comparing subdomains';
         }
         // Assuming this function is part of your event handler or any logic flow
-    async function addCourseAndBTLToNode(nodeId, courseCode, newBTL) {
+    async function addCourseAndBTLToNode(nodeId, courseCode, newBTL, chapter, objective, week) {
         try {
         const response = await fetch('/add/course-to-node', {
             method: 'POST',

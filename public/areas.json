@@ -1,0 +1,123 @@
+{
+    "Learning & Personal Development":[
+       "Collaborative Learning",
+       "Teamwork and Communication",
+       "Personal Development",
+       "Study Habits",
+       "Self Assessment",
+       "Educational Technology",
+       "Feedback Mechanism",
+       "Feedback and Review"
+    ],
+    "Academic & Research Skills":[
+       "Academic Orientation",
+       "Reading and Comprehension",
+       "Academic Support",
+       "Research Methodology",
+       "Knowledge Organisation",
+       "Academic Writing",
+       "Bibliography",
+       "Research",
+       "Academic Planning",
+       "Academic Guidance",
+       "Academic Review"
+    ],
+    "Programming & Software Development":[
+       "Programming Languages",
+       "Decentalised Application",
+       "Software Theory",
+       "Software Tools",
+       "Web Application",
+       "Software Engineering",
+       "Functional Programming",
+       "Assembly Programming",
+       "Compiler Design",
+       "Software Development",
+       "Programming"
+    ],
+    "Computer Science Fundamentals":[
+       "Algorithms and Complexity",
+       "General Computer Science",
+       "Computer Science",
+       "Computational Complexity",
+       "Computer Science Fundamentals",
+       "Computability Theory",
+       "Data Structures",
+       "Theoretical Computer Science"
+    ],
+    "Ethics & Professionalism":[
+       "Ethics",
+       "Privacy",
+       "Digital Ethics",
+       "Digital Media Ethics",
+       "Artificial Intelligence Ethics",
+       "Computer Science Ethics",
+       "Professional Development"
+    ],
+    "Computer Systems & Architecture":[
+       "Control Systems",
+       "Internet of Things",
+       "IO Systems",
+       "Computer Networks",
+       "Memory Management",
+       "Computer Networking",
+       "Embedded Systems",
+       "Computer Architecture",
+       "Computer Systems",
+       "Operating Systems",
+       "Systems Programming"
+    ],
+    "Artificial Intelligence & Data Analysis":[
+       "Artificial Intelligence",
+       "Parallel Computing",
+       "Natural Language Processing",
+       "Data Analysis",
+       "Computer Vision",
+       "Statistical Learning"
+    ],
+    "Networking & Security":[
+       "Networking",
+       "Cybersecurity",
+       "Concurrency",
+       "Cryptography",
+       "Security",
+       "Network Science"
+    ],
+    "Databases & Information Management":[
+       "Geospatial Analysis",
+       "Database Systems",
+       "Collaboration",
+       "Database",
+       "Information Sciences",
+       "File Systems"
+    ],
+    "Mathematics & Computational Theory":[
+       "Integration of Skills",
+       "Systems Design",
+       "Mathematical Modelling",
+       "Mathematics",
+       "Computational Mathematics",
+       "Logic",
+       "Simulation",
+       "Discrete Mathematics",
+       "Scientific Computing",
+       "Automata Theory"
+    ],
+    "Media, Communication & Writing":[
+       "Media Analysis",
+       "Communication Skills",
+       "Digital Systems",
+       "Visual Communication",
+       "Technical Writing"
+    ],
+    "Business & Management":[
+       "Commercial Aspects",
+       "Industrial Aspects",
+       "Project Management"
+    ],
+    "History & Orientation":[
+       "Computer Science History",
+       "Practical Training"
+    ]
+ }
+ 

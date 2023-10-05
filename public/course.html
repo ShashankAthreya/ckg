@@ -37,10 +37,12 @@
         }
 
         #buttonContainer {
-            max-width: 300px;
-            width: 100%;
-            overflow-y: auto;
-        }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    gap: 10px; /* Space between grid items */
+    max-width: 100%;
+}
+
 
         #buttonContainer button {
             margin-bottom: 10px;
@@ -122,7 +124,7 @@ async function getCourses() {
     return data.courses;
     }
 
-async function populateButtons() {
+    async function populateButtons() {
     const courses = await getCourses();
     
     console.log("Courses:", courses);  // Debug log
@@ -134,11 +136,15 @@ async function populateButtons() {
         return;
     }
 
+    // Sort the courses array based on the course name
+    courses.sort((a, b) => a.name.localeCompare(b.name));
+
     courses.forEach(course => {
         const button = createCourseButton(course);
         buttonContainer.appendChild(button);
     });
 }
+
 
 populateButtons();
 </script>

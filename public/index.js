@@ -1,4 +1,4 @@
-function _chart(graph, d3, width, DOM, _, color, drag) {
+function _chart(graph, d3, width, DOM, _, drag) {
   document.getElementById("course_info").innerHTML = "Course: " + graph.courses[0].name + " - " + graph.courses[0].code;
   let selectedNodes = [];
   const radiusExtent = [5, 18],
@@ -7,7 +7,7 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
 
   const simulation = d3.forceSimulation(graph.nodes)
     .force("link", d3.forceLink(graph.links).id(d => d.id))
-    .force("charge", d3.forceManyBody().strength(-5))
+    .force("charge", d3.forceManyBody().strength(-25))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("collide", d3.forceCollide().radius(function (d) { return 50; }).strength(.5).iterations(1));
 
@@ -20,7 +20,7 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
 
   const link = svg.append("g")
     .attr("stroke", "#999")
-    .attr("stroke-opacity", 0.6)
+    .attr("stroke-opacity", 0.8)
     .selectAll("line")
     .data(graph.links)
     .join("line")
@@ -36,6 +36,7 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
       return { 'id': id, 'list': listNodes };
     }),
     nodeNeighbors = _.mapValues(_.keyBy(neighbors, 'id'), 'list');
+
 
   const display = svg.append("text")
     .attr("x", 10)
@@ -191,14 +192,14 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
     }
 }
 
-  async function nodeAddition(nodeID, nodeName, nodeCourse, nodeSubDomain, nodeBTL) {
+  async function nodeAddition(nodeID, nodeName, nodeCourse, nodeClassification, nodeBTL, nodeChapter, nodeObjective, nodeWeek) {
     try {
         const response = await fetch('/add/node', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id: nodeID, name: nodeName, course: nodeCourse, subDomain: nodeSubDomain, btl: nodeBTL })
+            body: JSON.stringify({ id: nodeID, name: nodeName, course: nodeCourse, label: nodeClassification, btl: nodeBTL, chapter: nodeChapter, obj: nodeObjective, week: nodeWeek })
         });
 
         const data = await response.json();
@@ -219,15 +220,73 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
     }
 }
 
+function nodeColouring(taxonomy){
+  if (taxonomy == 'BTL_Remember') {
+    return 'red';
+  }
+  if (taxonomy == 'BTL_Understand') {
+    return 'orange';
+  }
+  if (taxonomy == 'BTL_Apply') {
+    return 'yellow';
+  }
+  if (taxonomy == 'BTL_Analyse') {
+    return 'green';
+  }
+  if (taxonomy == 'BTL_Evaluate') {
+    return 'blue';
+  }
+  if (taxonomy == 'BTL_Create') {
+    return 'violet';
+  }
+  return 'black';
+}
+let chapters = [];
+graph.nodes.forEach(node => {
+  if (node.type === 'Chapter') {
+      chapters.push(node);
+  }
+});
+let colors = ["#FF0000", "#0000FF", "#FFFF00", "#008000", "#FFA500", "#800080", "#00FFFF", "#FF00FF", "#00FF00", "#008080"]
+
+let chapterColorMapping = {};
+chapters.forEach((chapter, i) => {
+    chapterColorMapping[chapter.id] = colors[i % colors.length];
+});
+
+let objectives = [];
+graph.obj.forEach(objective => {
+  objectives.push(objective);
+});
+
+// let shaders = ['#FFB6C1', '#ADD8E6', '#FFFACD', '#98FB98', '#FFE4B5', '#D8BFD8', '#B0E0E6', '#DDA0DD', '#AFEEEE', '#20B2AA'];
+
+let shaders = ['#800000', '#008080', '#2E8B57', '#8B4513', '#8A2BE2', '#808000', '#FF4500', '#6A5ACD', '#4682B4', '#228B22'];
+
+
+let objectiveColorMapping = {};
+objectives.forEach((objective, i) => {
+    objectiveColorMapping[objective.id] = shaders[i % shaders.length];
+});
+console.log(objectiveColorMapping)
+function colourMapping(node) {
+  if (node.type === 'Chapter') {
+    return(chapterColorMapping[node.id])
+  } else if (node.type === 'Topic') {
+    return(chapterColorMapping[node.chapter])
+  }
+}
+
+const rootNodes = graph.courses.map(course => course.root_topic);
   const node = svg.append("g")
     .attr("stroke-width", 1.5)
     .selectAll("circle")
     .data(graph.nodes)
     .join("circle")
     .attr("r", (d) => nodeRadiusScale(+d.degree))
-    .attr("stroke", d => d.id === graph.courses[0].root_topic ? "orange" : "#fff")
-    .attr("fill", color)
-    .style("filter", d => d.id === graph.courses[0].root_topic ? "url(#redGlow)" : null) 
+    .attr("stroke", "#000")
+    .attr("fill", d => d.type === "Course" ? "#add8e6": colourMapping(d))
+    .style("filter", d => rootNodes.includes(d.id) ? "url(#redGlow)" : null) 
     .call(drag(simulation))
     .on("mouseover", function (d) {
       node.filter(nd => !_.includes(nodeNeighbors[d.id], nd.id)).style("opacity", 0.1);
@@ -252,34 +311,44 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
         } else {
           selectedNodes.splice(index, 1);
           d3.select(this)
-            .style("stroke", d => d.id === graph.courses[0].root_topic ? "orange" : "#fff")
-            .style("filter", d => d.id === graph.courses[0].root_topic ? "url(#redGlow)" : null);
+            .style("stroke", "#000")
+            .style("filter", d => rootNodes.includes(d.id) ? "url(#redGlow)" : null);
         }
-        processSelectedNodes();
         updateSelectedNodesDisplay();
         updateButtonState();
       }
     })
 
+
+  function objectiveLabelColourMapping(node) {
+    if (node.type !== 'Topic') {
+      return("#444")
+    } else if (node.type === 'Topic') {
+    return(objectiveColorMapping[node.objectives[node.objectives.length - 1]])
+  }
+  }
   const label = svg.append("g")
-    .style("fill", "#444")
-    .selectAll("text")
-    .data(graph.nodes)
-    .join("text")
-    .text(function (d) { return d.name.replace(/\_/g, " "); })
-    .style("pointer-events", "none")
-    .attr("dx", (d) => (nodeRadiusScale(+d.degree) + 4))
-    .style("alignment-baseline", "middle");
+  .selectAll("text")
+  .data(graph.nodes)
+  .join("text")
+  .text(function (d) { return d.name.replace(/\_/g, " "); })
+  .style("pointer-events", "none")
+  .attr("dx", (d) => (nodeRadiusScale(+d.degree) + 4))
+  .style("alignment-baseline", "middle")
+  .style("fill", d => objectiveLabelColourMapping(d));
+
 
   function fetchDropdownData() {
     // For the first modal
-    populateDropdown('topicSubDomains', graph.subdomains);
-    populateDropdown('courseName', graph.courses);
+    populateDropdown('topicClassification', graph.classifications);
+    populateDropdown('topicObjective', graph.obj);
+    populateDropdown('topicChapter', graph.chapters);
     populateDropdown('bloomTaxonomy', graph.bloomTL);
 
     // For the second modal (Update modal)
-    populateDropdown('topicSubDomainsUpdate', graph.subdomains);
-    populateDropdown('courseNameUpdate', graph.courses);
+    populateDropdown('topicClassificationUpdate', graph.classifications);
+    populateDropdown('topicObjectiveUpdate', graph.obj);
+    populateDropdown('topicChapterUpdate', graph.chapters);
     populateDropdown('bloomTaxonomyUpdate', graph.bloomTL);
 
     populateDropdown('remSrcTopic', graph.nodes);
@@ -314,11 +383,14 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
       return
     }
     const topicName = document.getElementById('topicName').value;
-    const subDomain = document.getElementById('topicSubDomains').value;
-    const course = document.getElementById('courseName').value;
+    const classificationLabel = document.getElementById('topicClassification').value;
+    const course = graph.courses[0].id;
     const BTL = document.getElementById('bloomTaxonomy').value;
-    console.log(topicKey, topicName, course, subDomain, BTL);
-    nodeAddition(topicKey, topicName, course, subDomain, BTL)
+    const chapter = document.getElementById('topicChapter').value;
+    const objective = document.getElementById('topicObjective').value;
+    const week = document.getElementById('topicWeek').value;
+    console.log(topicKey, topicName, course, classificationLabel, BTL, chapter, objective, week);
+    nodeAddition(topicKey, topicName, course, classificationLabel, BTL, chapter, objective, week)
     location.reload(true);
   }
   document.getElementById('submitUpdatedNode').addEventListener('click', function (event) {
@@ -329,9 +401,13 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
   async function sendSparqlUpdateQuery(){
     let node_id = document.getElementById('topicUpdateKey').value
     let node_name = document.getElementById('topicUpdateName').value
-    let node_subDomain = document.getElementById('topicSubDomainsUpdate').value
-    let node_course = document.getElementById('courseNameUpdate').value
+    let node_course = graph.courses[0].id;
     let node_btl = document.getElementById('bloomTaxonomyUpdate').value
+
+    let node_classification = document.getElementById('topicClassificationUpdate').value;
+    let node_objective = document.getElementById('topicObjectiveUpdate').value;
+    let node_chapter = document.getElementById('topicChapterUpdate').value;
+    let node_week = document.getElementById('topicWeekUpdate').value;
     
     var data = await getNodeInfo(selectedNodes[0]);
     console.log(data);
@@ -344,7 +420,7 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
           throw new Error('Failed to delete node.');
       }
       
-      let addResult = await nodeAddition(node_id, node_name, node_course, node_subDomain, node_btl);
+      let addResult = await nodeAddition(node_id, node_name, node_course, node_classification, node_btl, node_chapter, node_objective, node_week);
       
       if (!addResult) {
           throw new Error('Failed to add node.');
@@ -424,18 +500,11 @@ function _chart(graph, d3, width, DOM, _, color, drag) {
 
     document.getElementById('topicUpdateKey').value = node.id;
     document.getElementById('topicUpdateName').value = node.name;
-    document.getElementById('topicSubDomainsUpdate').value = node.subDomains[0];
-    document.getElementById('courseNameUpdate').value = "Course" + graph.courses[0].code;
-
-    var data = await getNodeInfo(node);  // Using 'await' here
-
-    const courseData = data.courses.find(course => course.id === "Course" + graph.courses[0].code);
-    if (courseData) {
-        document.getElementById('bloomTaxonomyUpdate').value = courseData.btl;
-    } else {
-        // If not found, you can reset the field or handle the error
-        document.getElementById('bloomTaxonomyUpdate').value = '';
-    }
+    document.getElementById('topicClassificationUpdate').value = node.label;
+    document.getElementById('topicObjectiveUpdate').value = node.objectives[0];
+    document.getElementById('topicChapterUpdate').value = node.chapter;
+    document.getElementById('bloomTaxonomyUpdate').value = node.btl;
+    document.getElementById('topicWeekUpdate').value = node.week;
     return;
   }
 
@@ -615,7 +684,6 @@ selectedNodesDiv.style.zIndex = '-1';     // Ensure it stays on top of other con
       .attr("x", function (d) { return d.x = Math.max(5, Math.min(width - 5, d.x)); })
       .attr("y", function (d) { return d.y = Math.max(5, Math.min(height - 5, d.y)); });
 
-
   });
 
   var svgNode = svg.node();
@@ -652,11 +720,11 @@ function _drag(d3) {
   )
 }
 
-function _color(d3, graph) {
-  const max_degree = d3.max(graph.nodes.map((d) => d.degree));
-  const scale = d3.scaleLinear().domain([0, max_degree]).range([0, 2]);
-  return d => d3.interpolateRainbow(scale(d.degree));
-}
+// function _color(d3, graph) {
+//   const max_degree = d3.max(graph.nodes.map((d) => d.degree));
+//   const scale = d3.scaleLinear().domain([0, max_degree]).range([0, 2]);
+//   return d => d3.interpolateRainbow(scale(d.degree));
+// }
 
 // function _graph(d3) {
 //   return (d3.json("http://localhost:3000/query/data?id=5062COPP6Y"))
@@ -680,9 +748,9 @@ function _d3(require) {
 
 export default function define(runtime, observer) {
   const main = runtime.module();
-  main.variable(observer("chart")).define("chart", ["graph", "d3", "width", "DOM", "_", "color", "drag"], _chart);
+  main.variable(observer("chart")).define("chart", ["graph", "d3", "width", "DOM", "_", "drag"], _chart);
   main.variable(observer("drag")).define("drag", ["d3"], _drag);
-  main.variable(observer("color")).define("color", ["d3", "graph"], _color);
+  // main.variable(observer("color")).define("color", ["d3", "graph"], _color);
   main.variable(observer("graph")).define("graph", ["d3"], _graph);
   main.variable(observer("d3")).define("d3", ["require"], _d3);
   return main;

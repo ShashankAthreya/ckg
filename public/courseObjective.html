@@ -44,27 +44,23 @@
         }
     </style>
 
-    <title>Curriculum KG</title>
+    <title>Course Objective</title>
 </head>
 
 <body>
 
     <h1 id="Title">Course Objective</h1>
     <div id="buttonContainer"></div>
-    <!-- <button type="button" id="Course5062COPP6Y" class="btn btn-outline-info" data-bs-toggle="button" data-toggle="modal"
-        data-target="#nodeModal">Course5062COPP6Y</button>
-    <button type="button" id="CourseXM_40020" class="btn btn-outline-info" data-bs-toggle="button" data-toggle="modal"
-        data-target="#nodeModal">CourseXM_40020</button> -->
     <div id="courseObjective" style="display: none;">
         <table id="courseObjectiveTable" cellspacing="0" cellpadding="5">
             <thead>
                 <tr>
-                    <th>Subdomain</th>
-                    <th>Topic Count</th>
-                    <th>Percentage of Total</th>
-                    <th>Taxonomy Level</th>
-                    <th>Taxonomy Count</th>
-                    <th>Percentage in Subdomain</th>
+                    <th>Chapter</th>
+                    <th>No. of topics in Chapter</th>
+                    <th>Percentage of Chapter in Course</th>
+                    <th>Bloom's Taxonomy Levels in Chapter</th>
+                    <th>No. of topics in each taxonomy</th>
+                    <th>Percentage of taxonomy in Chapter</th>
                 </tr>
             </thead>
             <tbody id="tbody">
@@ -345,16 +341,4 @@ async function populateButtons() {
 }
 
 populateButtons();
-
-
-    // document.getElementById('Course5062COPP6Y').addEventListener('click', function (event) {
-    //     document.getElementById('courseObjective').style.display = "block";
-    //     document.querySelector('tbody').innerHTML = '';
-    //     getCourseInfo("5062COPP6Y");
-    // });
-    // document.getElementById('CourseXM_40020').addEventListener('click', function (event) {
-    //     document.getElementById('courseObjective').style.display = "block";
-    //     document.querySelector('tbody').innerHTML = '';
-    //     getCourseInfo("XM_40020");
-    // });
 </script>

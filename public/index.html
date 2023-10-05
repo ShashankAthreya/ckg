@@ -33,7 +33,7 @@
         <div class="alert alert-info" role="alert" id="course_info">
         </div>
         <button type="button" id="addNode" class="btn btn-outline-success" data-bs-toggle="button" data-toggle="modal"
-            data-target="#nodeModal">Add Node</button>
+            data-target="#nodeModal">Add Topic</button>
         <button type="button" id="updateNode" class="btn btn-outline-warning" disabled data-bs-toggle="button" data-toggle="modal"
         data-target="#nodeUpdateModal">Update
             Node</button>
@@ -47,7 +47,7 @@
             Links from selected Nodes</button>
         <button type="button" id="unlinkNodes" class="btn btn-outline-danger" data-bs-toggle="button" data-toggle="modal"
         data-target="#removeAllNodes"> Unlink Nodes</button>
-        <h4 class="mb-4 text-center" style="color: lightslategray; float: right;">Hold Ctrl/Cmd and click to select nodes</h4>
+        <h6 class="mb-4 text-center" style="color: lightslategray; float: right; padding-right: 5%; padding-top: 5px;">Hold Ctrl/Cmd and click to select nodes</h6>
     </div>
 
 
@@ -57,7 +57,7 @@
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Node Form</h4>
+                    <h4 class="modal-title">Topic Addition Form</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -65,7 +65,7 @@
                 <div class="modal-body">
                     <form id="nodeForm">
                         <div class="form-group">
-                            <label for="topicKey">Topic Key:</label>
+                            <label for="topicKey">Topic Key:(unique identifier)</label>
                             <input type="text" class="form-control" id="topicKey" name="topicKey">
                         </div>
 
@@ -75,17 +75,29 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="topicSubDomains">Topic Sub Domains:</label>
-                            <select class="form-control" id="topicSubDomains">
+                            <label for="topicClassification">Topic Classification Label:</label>
+                            <select class="form-control" id="topicClassification">
                                 <option>(Select one)</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="courseName">Course Name:</label>
-                            <select class="form-control" id="courseName">
+                            <label for="topicObjective">Topic Objective:</label>
+                            <select class="form-control" id="topicObjective">
                                 <option>(Select one)</option>
                             </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topicChapter">Topic Chapter:</label>
+                            <select class="form-control" id="topicChapter">
+                                <option>(Select one)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topicWeek">Week of topic explaination:</label>
+                            <input type="text" class="form-control" id="topicWeek" name="topicWeek">
                         </div>
 
                         <div class="form-group">
@@ -120,7 +132,7 @@
                 <div class="modal-body">
                     <form id="nodeUpdateForm">
                         <div class="form-group">
-                            <label for="topicUpdateKey">Topic Key:</label>
+                            <label for="topicUpdateKey">Topic Key: (uniuq)</label>
                             <input type="text" class="form-control" id="topicUpdateKey" name="topicUpdateKey">
                         </div>
 
@@ -130,17 +142,29 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="topicSubDomains">Topic Sub Domains:</label>
-                            <select class="form-control" id="topicSubDomainsUpdate">
+                            <label for="topicClassificationUpdate">Topic Classification Label:</label>
+                            <select class="form-control" id="topicClassificationUpdate">
                                 <option>(Select one)</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="courseName">Course Name:</label>
-                            <select class="form-control" id="courseNameUpdate">
+                            <label for="topicObjectiveUpdate">Topic Objective:</label>
+                            <select class="form-control" id="topicObjectiveUpdate">
                                 <option>(Select one)</option>
                             </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topicChapterUpdate">Topic Chapter:</label>
+                            <select class="form-control" id="topicChapterUpdate">
+                                <option>(Select one)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topicWeekUpdate">Week of topic explaination:</label>
+                            <input type="text" class="form-control" id="topicWeekUpdate" name="topicWeekUpdate">
                         </div>
 
                         <div class="form-group">

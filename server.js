@@ -13,41 +13,61 @@ app.get('/query/data', async (req, res) => {
 
   const nodesQuery = `
   PREFIX ex: <http://localhost:8080/>
-  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-  PREFIX math: <http://www.w3.org/2005/xpath-functions/math#>
+  SELECT ?type ?id ?name ?label ?btl ?chapter (GROUP_CONCAT(DISTINCT ?objective;separator=", ") as ?objectives) ?week  
+  WHERE {
+    {
+      ?id a ?type.
+      ?id a ex:Topic ;
+          ex:name ?name ;
+          ex:classification_label ?label ;
+          ex:in_course/ex:course ex:Course5062COPP6Y;
+          ex:in_course/ex:week_id ?week;
+          ex:in_course/ex:chapter ?chapter;
+          ex:in_course/ex:objectives ?objective;
+          ex:in_course/ex:bloom_taxonomy_level ?btl .
+    } UNION {
+        ?id a ?type .
+          ?id a ex:Course ;
+            ex:name ?name .
+      FILTER (?id = ex:Course5062COPP6Y)
+      } UNION {
+        ?course a ex:Course;
+             ex:chapters ?id.
+        ?id a ?type .
+          ?id a ex:Chapter ;
+            ex:name ?name .
+      FILTER (?course = ex:Course5062COPP6Y)
+      }
+    }
   
-  SELECT ?id ?name (GROUP_CONCAT(DISTINCT ?subDomain;separator=", ") as ?subDomains) (AVG(?taxonomyValue) AS ?avgTaxonomyValue) (math:exp(AVG(?taxonomyValue) * math:log(2)) AS ?degree) WHERE {
-      ?id ex:name ?name .
-      ?id ex:sub_domain ?subDomain .
-      ?id ex:in_course/ex:course ?course .         
-      ?id ex:in_course/ex:bloom_taxonomy_level ?btl .
-      ?btl ex:value ?taxonomyValueRaw .
-      BIND(xsd:decimal(?taxonomyValueRaw) AS ?taxonomyValue)
-      FILTER (?course = ex:Course${course})       # Filter to select only nodes with the specific course
-      FILTER NOT EXISTS { ?id a ex:Course } 
-      FILTER NOT EXISTS { ?id a ex:SubDomain } 
-      FILTER NOT EXISTS { ?id a ex:Domain } 
-  }
-  GROUP BY ?id ?name 
-  ORDER BY ?id  
+  GROUP BY ?type ?id ?name ?label ?btl ?chapter ?week  
   `;
   const linksQuery = `
   PREFIX ex: <http://localhost:8080/>
-  SELECT ?source ?target WHERE {
-  ?source a ex:Topic ;
-    ex:in_course/ex:course ?course ;
-    ex:has_topics ?target .
-
-  ?target ex:in_course/ex:course ?course . 
-
-  FILTER (?course = ex:Course${course})
+  
+SELECT ?source ?target WHERE {
+  {
+    ?source a ex:Topic ;
+      ex:in_course/ex:course ?course ;
+      ex:has_topics ?target .
+    ?target ex:in_course/ex:course ?course . 
+    FILTER (?course = ex:Course${course})
+  } UNION {
+    ?source a ex:Course ;
+      ex:chapters ?target .
+      FILTER (?source = ex:Course${course})
+  } UNION {
+    ?source a ex:Chapter ;
+      ex:root_topic ?target .
+    ?target ex:in_course/ex:course ?course .
+    FILTER (?course = ex:Course${course})
+  }
 }
-
   `;
   const subdomainQuery = `
   PREFIX ex: <http://localhost:8080/>
   SELECT ?id ?name WHERE {
-      ?id a ex:SubDomain ;
+      ?id a ex:ClassificatinLabel ;
                 ex:name ?name .
   }
   `;
@@ -60,13 +80,15 @@ app.get('/query/data', async (req, res) => {
   `;
   const courseQuery = `
   PREFIX ex: <http://localhost:8080/>
-  SELECT ?id ?name ?code ?root_topic WHERE {
+  SELECT ?id ?name ?code (GROUP_CONCAT(DISTINCT ?root_topics;separator=", ") as ?root_topic) (GROUP_CONCAT(DISTINCT ?chapters;separator=", ") as ?chapter) WHERE {
     ?id a ex:Course ;
   		ex:name ?name ;
     	ex:course_code ?code ;
-      ex:root_topic ?root_topic .
+      ex:chapters ?chapters .
+      ?chapters a ex:Chapter ;
+        ex:root_topic ?root_topics .
       FILTER (?id = ex:Course${course})
-  }
+  }GROUP BY ?id ?name ?code
   `;
   const bloomTLQuery = `
   PREFIX ex: <http://localhost:8080/>
@@ -76,6 +98,32 @@ app.get('/query/data', async (req, res) => {
     	ex:value ?value .
   }
   `;
+
+  const objectiveQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  
+  SELECT ?obj ?name ?btl WHERE {
+      ?course a ex:Course ;
+        ex:objectives ?obj .
+      ?obj a ex:CourseObjective ;
+        ex:name ?name ;
+        ex:bloom_taxonomy_level ?btl .
+      FILTER (?course = ex:Course${course})
+    }
+  `;
+
+  const chapterQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  
+  SELECT ?id ?name WHERE {
+      ?course a ex:Course ;
+        ex:chapters ?id .
+      ?id a ex:Chapter ;
+        ex:name ?name .
+      FILTER (?course = ex:Course${course})
+    }
+  `;
+
 
   const nodesResponse = await fetch(endpoint, {
     method: 'POST',
@@ -116,6 +164,22 @@ app.get('/query/data', async (req, res) => {
     },
     body: courseQuery
   });
+
+  const objResponse = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: objectiveQuery
+  });
+
+  const chapterResponse = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: chapterQuery
+  });
   const bloomTLResponse = await fetch(endpoint, {
     method: 'POST',
     headers: {
@@ -129,44 +193,59 @@ app.get('/query/data', async (req, res) => {
   const subdomains = await subdomainResponse.json();
   const domains = await domainResponse.json();
   const courses = await courseResponse.json();
+  const obj = await objResponse.json();
+  const chapter = await chapterResponse.json();
   const bloomTLs = await bloomTLResponse.json();
 
 
+function getDegree(type, btl) {
+  if(type === 'Course'){
+    return 15
+  } else if(type === 'Chapter'){
+    return 12
+  } else {
+    if (btl === 'BTL_Remember' ) {
+      return 1
+    } else if (btl === 'BTL_Understand' ) {
+      return 3
+    } else if (btl === 'BTL_Apply' ) {
+      return 5
+    } else if (btl === 'BTL_Analyse' ) {
+      return 7
+    } else if (btl === 'BTL_Evaluate' ) {
+      return 9
+    } else if (btl === 'BTL_Create' ) {
+      return 10
+    } 
+  }
+}
   res.json({
-    nodes: nodes.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/', ''), subDomains: binding.subDomains.value.split(', ').map(sd => sd.replace('http://localhost:8080/', '')), degree: parseInt(binding.degree.value)})),
+    nodes: nodes.results.bindings.map(binding => {
+      let node = {
+        name: binding.name ? binding.name.value : null,
+        id: binding.id ? binding.id.value.replace('http://localhost:8080/', '') : null,
+        type: binding.type ? binding.type.value.replace('http://localhost:8080/', '') : null,
+        label: binding.label ? binding.label.value.replace('http://localhost:8080/', '') : null,
+        degree: binding.btl ? getDegree(binding.type.value.replace('http://localhost:8080/', ''),binding.btl.value.replace('http://localhost:8080/', '')) : getDegree(binding.type.value.replace('http://localhost:8080/', ''),null),
+        btl: binding.btl ? binding.btl.value.replace('http://localhost:8080/', '') : null,
+        objectives: binding.objectives ? binding.objectives.value.split(', ').map(obj => obj.replace('http://localhost:8080/', '')) : null,
+        chapter: binding.chapter ? binding.chapter.value.replace('http://localhost:8080/', '') : null,
+        week: binding.week ? parseInt(binding.week.value) : null
+      };
+      return node;
+    }),
     links: links.results.bindings.map(binding => ({ source: binding.source.value.replace('http://localhost:8080/', ''), target: binding.target.value.replace('http://localhost:8080/', '') })),
-    subdomains: subdomains.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/', '') })),
+    classifications: subdomains.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/', '') })),
     domains: domains.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/', '') })),
-    courses: courses.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/', ''), code: binding.code.value, root_topic: binding.root_topic.value.replace('http://localhost:8080/', '')})),
+    courses: courses.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/', ''), code: binding.code.value,root_topic: binding.root_topic.value.split(', ').map(obj => obj.replace('http://localhost:8080/', ''))})),
+    chapters: chapter.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/', '')})),
+    obj: obj.results.bindings.map(binding => ({ name: binding.name.value, id: binding.obj.value.replace('http://localhost:8080/', ''), btl: binding.btl.value.replace('http://localhost:8080/', '')})),
     bloomTL: bloomTLs.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/', ''), value: binding.value.value })),
   });
 });
 
 app.post('/delete/node', async (req, res) => {
   const nodeId = req.body.id;
-  
-  // const askQuery = `
-  //   PREFIX ex: <http://localhost:8080/>
-  //   ASK {
-  //     ?course ex:root_topic ex:${nodeId} . 
-  //     ?course a ex:Course .
-  //   }
-  // `;
-
-  // const askResponse = await fetch(endpoint, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/sparql-query'
-  //   },
-  //   body: askQuery
-  // });
-
-  // const askResult = await askResponse.json();
-
-  // if (askResult.boolean) {
-  //   res.json({ success: false, message: "Root Node Can't be deleted." });
-  //   return;  // Important: Return here to prevent the following code from executing.
-  // }
 
   const deleteQuery = `
     PREFIX ex: <http://localhost:8080/>
@@ -203,9 +282,12 @@ app.post('/add/node', async (req, res) => {
   INSERT DATA {
       ex:${req.body.id} a ex:Topic ;
           ex:name "${req.body.name}" ;
-          ex:sub_domain ex:${req.body.subDomain} ;
+          ex:classification_label ex:${req.body.label} ;
           ex:in_course [
               ex:course ex:${req.body.course} ;
+              ex:week_id ${req.body.week};
+              ex:objectives ex:${req.body.obj};
+              ex:chapter ex:${req.body.chapter};
               ex:bloom_taxonomy_level ex:${req.body.btl}
           ] .
   }
@@ -248,7 +330,7 @@ app.get('/node/details', async (req, res) => {
   SELECT ?id ?name ?subDomain WHERE{
     ?id a ex:Topic;
         ex:name ?name;
-        ex:sub_domain ?subDomain
+        ex:classification_label ?subDomain
         FILTER (?id = ex:${nodeId})
   }
   `;
@@ -422,7 +504,7 @@ app.get('/course/objective', async (req, res) => {
           WHERE {
               ?topic a ex:Topic ;
                     ex:in_course/ex:course ex:Course${course} ;
-                    ex:sub_domain ?subDomain .
+                    ex:in_course/ex:chapter ?subDomain .
           }
           GROUP BY ?subDomain
       }
@@ -433,7 +515,7 @@ app.get('/course/objective', async (req, res) => {
               ?topic a ex:Topic ;
                     ex:in_course/ex:course ex:Course${course} ;
                     ex:in_course/ex:bloom_taxonomy_level ?taxonomyLevel ;
-                    ex:sub_domain ?subDomain .
+                    ex:in_course/ex:chapter ?subDomain .
           }
           GROUP BY ?subDomain ?taxonomyLevel
       }
@@ -495,13 +577,13 @@ app.get('/query/subdomain/topics', async (req, res) => {
   SELECT ?id ?name ?subDomain WHERE {
     ?id a ex:Topic ;
           ex:name ?name ;
-          ex:sub_domain ?subDomain .
+          ex:classification_label ?subDomain .
   }  
   `;
   const subdomainQuery = `
   PREFIX ex: <http://localhost:8080/>
   SELECT ?id ?name WHERE {
-      ?id a ex:SubDomain ;
+      ?id a ex:ClassificatinLabel ;
                 ex:name ?name .
   }`;
   
@@ -534,7 +616,7 @@ app.post('/add/subdomain', async (req, res) => {
   const addQuery = `
   PREFIX ex: <http://localhost:8080/>
   INSERT DATA {
-      ex:SubDomain${req.body.id} a ex:SubDomain ;
+      ex:CL_${req.body.id} a ex:ClassificatinLabel ;
           ex:name "${req.body.name}" ;
           ex:domain ex:DomainComputerScience .
   }
@@ -570,7 +652,7 @@ app.post('/add/course', async (req, res) => {
       ex:Course${req.body.id} a ex:Course ;
           ex:name "${req.body.name}" ;
           ex:course_code "${req.body.id}";
-          ex:sub_domain ${subdomainValues};
+          ex:classification_label ${subdomainValues};
           ex:root_topic ${rootTopicValues} .
   }
   `;
@@ -703,13 +785,13 @@ app.post('/update/node-subdomain', async (req, res) => {
   PREFIX ex: <http://localhost:8080/>
   
   DELETE {
-    ex:${nodeId} ex:sub_domain ?currentSubDomain .
+    ex:${nodeId} ex:classification_label ?currentSubDomain .
   }
   INSERT {
-    ex:${nodeId} ex:sub_domain ex:${newSubDomain} .
+    ex:${nodeId} ex:classification_label ex:${newSubDomain} .
   }
   WHERE {
-    ex:${nodeId} ex:sub_domain ?currentSubDomain .
+    ex:${nodeId} ex:classification_label ?currentSubDomain .
   }
   `;
 
@@ -830,7 +912,6 @@ app.get('/node/course-and-links', async (req, res) => {
   }
 });
 
-
 app.post('/node/remove/course', async (req, res) => {
   const nodeId = req.body.id;
   const course = req.body.course;
@@ -860,6 +941,107 @@ app.post('/node/remove/course', async (req, res) => {
   }
 });
 
+app.post('/add/learningLine', async (req, res) => {
+  const addQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  INSERT DATA {
+      ex:LearningLine${req.body.id} a ex:LearningLine ;
+          ex:name "${req.body.name}" .
+  }
+  `;
+
+  const response = await fetch(endpoint_update, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-update'
+    },
+    body: addQuery
+  });
+
+  if (response.ok) {
+    console.log("Learning Line Added");
+    res.json({ success: true });
+  } else {
+    const errorText = await response.text();
+    res.json({ success: false, message: 'Failed to Add Learning Line ' + req.body.id, error: errorText });
+  }
+});
+
+app.get('/query/learningLines', async (req, res) => {
+  
+  const learningLinesQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  SELECT ?id ?name WHERE {
+      ?id a ex:LearningLine ;
+                ex:name ?name .
+  }`;
+  const subdomainResponse = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: learningLinesQuery
+  });
+
+  const learningLines = await subdomainResponse.json();
+
+  res.json({
+    learningLines: learningLines.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/', '') })),
+  });
+});
+
+app.get('/query/trajectory/topic', async (req, res) => {
+  
+  const topicTrajectoryQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  SELECT ?id ?name WHERE {
+    ?id a ex:Course;
+        ex:classification_label ex:${req.query.subDomain};
+        ex:name ?name .
+    ex:${req.query.topic} a ex:Topic;
+       ex:in_course/ex:course ?id.
+  }
+  `;
+console.log(req)
+  const trajectoryResponse = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: topicTrajectoryQuery
+  });
+
+  const trajectory = await trajectoryResponse.json();
+
+  res.json({
+    trajectory: trajectory.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/Course', '') })),
+  });
+});
+
+
+app.get('/query/trajectory/domain', async (req, res) => {
+  const domainTrajectoryQuery = `
+  PREFIX ex: <http://localhost:8080/>
+  SELECT ?id ?name WHERE {
+    ?id a ex:Course;
+        ex:classification_label ex:${req.query.subDomain};
+        ex:name ?name .
+  }
+  `;
+  const trajectoryResponse = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/sparql-query'
+    },
+    body: domainTrajectoryQuery
+  });
+
+  const trajectory = await trajectoryResponse.json();
+
+  res.json({
+    trajectory: trajectory.results.bindings.map(binding => ({ name: binding.name.value, id: binding.id.value.replace('http://localhost:8080/Course', '') })),
+  });
+});
 
 app.listen(3000, () => {
   console.log('Server listening on port 3000');
