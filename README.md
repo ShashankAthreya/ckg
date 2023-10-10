@@ -27,6 +27,20 @@ Replace `path_to_fuseki` with the actual path to your Fuseki directory:
 ./path_to_fuseki/fuseki-server --file=./data.ttl /ckg
 ```
 
+## 🐳 Running with docker
+
+### Run locally
+
+- Run `docker compose up --build`
+- → https://localhost/course.html
+
+### Deploy
+
+- Replace `localhost` with your domain name in `deployment/reverse_proxy/certbot.env`
+- Uncomment the `certbot_letsencrypt` section in `docker-compose.yaml`
+- Run: `docker compose up -d`
+- → https://localhost/course.html
+
 ## 📄 CSV to CKG Conversion
 
 You can convert your curriculum data from a CSV to CKG. Please make sure your CSV follows our [template](https://docs.google.com/spreadsheets/d/1jWGtx_d5HgPSjE8JtJPH2kJTfbcoSYhI--RJdIwgtL0/edit?usp=sharing). 
