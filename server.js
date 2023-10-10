@@ -3,9 +3,14 @@ const app = express();
 app.use(express.static('public'));
 app.use(express.json());
 
-const endpoint = 'http://localhost:3030/ckg/sparql';
+const fuseki_url = process.env.FUSEKI_URL;
 
-const endpoint_update = 'http://localhost:3030/ckg/update';
+const endpoint = fuseki_url + '/ckg/sparql';
+
+const endpoint_update = fuseki_url + '/ckg/update';
+
+console.log("endpoint: ", endpoint)
+console.log("endpoint_update: ", endpoint_update)
 
 app.get('/query/data', async (req, res) => {
   const course = req.query.id; 

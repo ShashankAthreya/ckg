@@ -1,0 +1,1699 @@
+@prefix : <http://localhost:8080/> .
+
+:BTL_Remember a :BloomTaxonomyLevel ;
+          :name "Remember" ;
+          :value 1 .
+
+:BTL_Understand a :BloomTaxonomyLevel ;
+          :name "Understand" ;
+          :value 2 .
+
+:BTL_Apply a :BloomTaxonomyLevel ;
+          :name "Apply" ;
+          :value 3 .
+
+:BTL_Analyse a :BloomTaxonomyLevel ;
+          :name "Analyse" ;
+          :value 4 .
+
+:BTL_Evaluate a :BloomTaxonomyLevel ;
+          :name "Evaluate" ;
+          :value 5 .
+
+:BTL_Create a :BloomTaxonomyLevel ;
+          :name "Create" ;
+          :value 6 .
+
+:Parallel_Programming a :Topic ;
+          :name "Parallel Programming" ;
+          :classification_label :CL_ParallelComputing ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective3, :Course5062COPP6YObjective4 ;
+            :chapter :ChapterParallelAndDistributedProgramming ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Analyse ] ;
+          :has_topics :Parallelism, :Parallel_Thinking .
+
+:Parallelism a :Topic ;
+          :name "Parallelism" ;
+          :classification_label :CL_ParallelComputing ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective1 ;
+            :chapter :ChapterParallelAndDistributedProgramming ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Apply ] ;
+          :has_topics :Moores_Law, :Dennard_scaling, :Single_Core, :Multi_Core, :Parallelism_Challenges, :Parallelism_Levels, :Parallel_Machine_Model, :Amdahls_Law, :Gustafsons_Law .
+
+:Parallelism_Levels a :Topic ;
+          :name "Levels" ;
+          :classification_label :CL_ParallelComputing ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective1 ;
+            :chapter :ChapterParallelAndDistributedProgramming ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :Instruction_Level_Parallelism, :Data_Task_Level_Parallelism, :Data_Level_Parallelism .  
+
+:Data_Task_Level_Parallelism a :Topic;
+    :name "Data-Task Level Parallelism";
+    :classification_label :CL_ParallelComputing ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterParallelAndDistributedProgramming ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ]. 
+
+:Data_Level_Parallelism a :Topic;
+    :name "Data Level Parallelism";
+    :classification_label :CL_ParallelComputing ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterParallelAndDistributedProgramming ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Parallelism_Challenges a :Topic ;
+          :name "Challenges" ;
+          :classification_label :CL_ParallelComputing ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective1 ;
+            :chapter :ChapterParallelAndDistributedProgramming ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :Parallelism_Challenges_Power, :Parallelism_Challenges_Design_Complexity .
+
+:Parallelism_Challenges_Design_Complexity a :Topic ;
+          :name "Design Complexity" ;
+          :classification_label :CL_ParallelComputing ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective1 ;
+            :chapter :ChapterParallelAndDistributedProgramming ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Parallelism_Challenges_Power a :Topic ;
+          :name "Power" ;
+          :classification_label :CL_ParallelComputing ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective1 ;
+            :chapter :ChapterParallelAndDistributedProgramming ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Moores_Law a :Topic ;
+          :name "Moore's Law" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective1 ;
+            :chapter :ChapterSystemsArchitectureAndPerformance ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Dennard_scaling a :Topic ;
+          :name "Dennard Scaling" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective1 ;
+            :chapter :ChapterSystemsArchitectureAndPerformance ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Amdahls_Law a :Topic;
+    :name "Amdahl's Law";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember] .
+
+
+:Gustafsons_Law a :Topic;
+    :name "Gustafson's Law";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+:Instruction_Level_Parallelism a :Topic ;
+          :name "Instruction Level Parallelism" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective1 ;
+            :chapter :ChapterSystemsArchitectureAndPerformance ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :ILP_Scaling .
+
+:ILP_Scaling a :Topic ;
+          :name "ILP Scaling" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective1 ;
+            :chapter :ChapterSystemsArchitectureAndPerformance ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Single_Core a :Topic ;
+          :name "Single Core" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective1 ;
+            :chapter :ChapterSystemsArchitectureAndPerformance ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :Single_Core_Performance_Scaling .
+
+:Single_Core_Performance_Scaling a :Topic ;
+          :name "Single Core Performance Scaling" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective1 ;
+            :chapter :ChapterSystemsArchitectureAndPerformance ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Multi_Core a :Topic ;
+          :name "Multi Core" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective1 ;
+            :chapter :ChapterSystemsArchitectureAndPerformance ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :Dark_Silicon, :Multithreads, :CPU, :GPU, :Multi_Core_Performance, :Hardware_Performance_Metrics, :Multi_Core_Scheduling .
+
+:Multi_Core_Scheduling a :Topic;
+    :name "Scheduling";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Block_Scheduling, :Warp_Scheduling .
+
+:Block_Scheduling a :Topic;
+    :name "Block Scheduling";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Warp_Scheduling a :Topic;
+    :name "Warp Scheduling";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Warp_Occupancy, :Stalling_Warps .
+
+:Warp_Occupancy a :Topic;
+    :name "Warp Occupancy";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+      
+:Stalling_Warps a :Topic;
+    :name "Stalling Warps";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Multithread_Thread_Divergence a :Topic;
+    :name "Multithread Thread_Divergence";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective1,:Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] . 
+
+:Multithreads a :Topic;
+    :name "Multithreads";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective1, :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Multithread_Programming_Models, :Multithread_Challenges, :Locking, :Thread_Synchronisation, :Multithread_Thread_Divergence .
+
+:Locking a :Topic;
+    :name "Locking";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Deadlock, :Livelock .
+
+:Deadlock a :Topic;
+    :name "Deadlock";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Livelock a :Topic;
+    :name "Livelock";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Multithread_Challenges a :Topic;
+    :name "Challenges";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Multithread_Challenge_Parallelism, :Multithread_Challenge_Communication, :Multithread_Challenge_Synchronization .
+
+:Multithread_Challenge_Parallelism a :Topic;
+    :name "Parallelism";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ].
+
+:Multithread_Challenge_Communication a :Topic;
+    :name "Communication";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+:Multithread_Challenge_Synchronization a :Topic;
+    :name "Synchronization";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+:Multithread_Programming_Models a :Topic;
+    :name "Programming Models";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ];
+    :has_topics :PThread_Programming_Models, :OpenMP_Programming_Models .
+
+:PThread_Programming_Models a :Topic;
+    :name "PThread";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Apply ];
+    :has_topics :Multithread_Race_Condition .
+
+:Multithread_Race_Condition a :Topic;
+    :name "Race Condition";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective1 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:OpenMP_Programming_Models a :Topic;
+    :name "OpenMP";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Analyse ];
+    :has_topics :OpenMP_Thread_Scheduling, :OpenMP_Loop_Scheduling .
+
+:OpenMP_Thread_Scheduling a :Topic;
+    :name "Thread Scheduling";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:OpenMP_Loop_Scheduling a :Topic;
+    :name "Loop Scheduling";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:CPU a :Topic;
+    :name "CPU";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] . 
+
+:GPU a :Topic;
+    :name "GPU";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Apply ];
+    :has_topics :GPU_Programming, :GPU_Architecture, :GPU_Atomic_Operations, :GPU_Parallelisation, :GPU_Optimisation .
+
+:GPU_Programming a :Topic;
+    :name "GPU Programming";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:GPU_Architecture a :Topic;
+    :name "GPU Architecture";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:GPU_Parallelisation a :Topic;
+    :name "GPU Parallelisation";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :GPU_Parallelisation_Vector_ADD .
+
+:GPU_Parallelisation_Vector_ADD a :Topic;
+    :name "Vector-ADD";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+:GPU_Atomic_Operations a :Topic;
+    :name "Atomic Operations";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :GPU_Atomics .
+
+:GPU_Atomics a :Topic;
+    :name "Atomics";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:GPU_Programming_Models a :Topic;
+    :name "GPU Programming Models";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :GPU_Programming_Model_CUDA, :GPU_Programming_Model_OpenCL .
+
+:GPU_Programming_Model_CUDA a :Topic;
+    :name "CUDA";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :CUDA_Parallelism_Model .
+
+:CUDA_Parallelism_Model a :Topic;
+    :name "Parallelism Model";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:CUDA_Programming_Organisation a :Topic;
+    :name "Programming Organisation";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :CUDA_Execution_Flow, :CUDA_Memory_Allocation .
+
+:CUDA_Execution_Flow a :Topic;
+    :name "Execution Flow";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:CUDA_Memory_Allocation a :Topic;
+    :name "Memory Allocation";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:GPU_Programming_Model_OpenCL a :Topic;
+    :name "OpenCL";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+:GPU_Optimisation a :Topic;
+    :name "Optimisation";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:Memory a :Topic;
+    :name "Memory";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Memory_Caching, :Memory_Coalescing, :Multiple_Device_Memory_Scopes, :CUDA_Memory_Allocation .
+
+:Memory_Caching a :Topic;
+    :name "Memory Caching";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:Memory_Coalescing a :Topic;
+    :name "Memory Coalescing";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+
+:Memory_Spaces a :Topic;
+    :name "Memory Spaces";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Multiple_Device_Memory_Scopes .
+
+:Multiple_Device_Memory_Scopes a :Topic;
+    :name "Multiple Device Memory Scopes";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Memory_Consistency  .
+
+:Memory_Consistency a :Topic;
+    :name "Memory Consistency";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:Thread_Synchronisation a :Topic;
+    :name "Thread Synchronisation";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 46;
+        :objectives :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Barriers .
+
+:Barriers a :Topic;
+    :name "Barriers";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Block_Level_Barrier, :Global_Barrier .
+
+:Block_Level_Barrier a :Topic;
+    :name "Block Level Barrier";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:Global_Barrier a :Topic;
+    :name "Global Barrier";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 47;
+        :objectives :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:Multi_Core_Performance a :Topic;
+    :name "Performance";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Apply ] .
+
+:Hardware_Performance_Metrics a :Topic;
+    :name "Hardware Performance Metrics";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective2 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Apply ].
+
+:Parallel_Machine_Model a :Topic;
+    :name "Parallel Machine Model";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :PMM_Shared_Memory, :PMM_Distributed_Memory, :PMM_Virtual_Shared_Memory, :PMM_Hybrid_Memory .
+
+:PMM_Shared_Memory a :Topic;
+    :name "Shared Memory";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :PMM_Shared_Memory_Software_Cache .
+
+:PMM_Shared_Memory_Software_Cache a :Topic;
+    :name "Software Caching";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:PMM_Distributed_Memory a :Topic;
+    :name "Distributed Memory";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:PMM_Virtual_Shared_Memory a :Topic;
+    :name "Virtual Shared Memory";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:PMM_Hybrid_Memory a :Topic;
+    :name "Hybrids";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 45;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Dark_Silicon a :Topic ;
+          :name "Dark Silicon" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective2 ;
+            :chapter :ChapterSystemsArchitectureAndPerformance ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:MapReduce a :Topic ;
+          :name "MapReduce" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Analyse ];
+          :has_topics :MapReduce_Programming_Model, :Apache_Spark, :HDFS .
+
+:MapReduce_Programming_Model a :Topic ;
+          :name "MapReduce Programming Model" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Analyse ];
+          :has_topics :MRPM_Distributed_Execution, :MRPM_Dataflow, :MRPM_Partition_Function, :Master_Slave .
+
+:MRPM_Distributed_Execution a :Topic ;
+          :name "Distributed Execution" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:MRPM_Dataflow a :Topic ;
+          :name "Dataflow" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:MRPM_Partition_Function a :Topic ;
+          :name "Partition Function" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:Master_Slave_Coordination a :Topic ;
+          :name "Master-Slave Coordination" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:Apache_Spark a :Topic ;
+          :name "Apache Spark" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ];
+          :has_topics :Apache_Spark_Model .
+
+:Apache_Spark_Model a :Topic ;
+          :name "Apache Spark Model" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ];
+          :has_topics :Spark_RDD, :Spark_Streaming . 
+
+:Spark_RDD a :Topic ;
+          :name "Resilient Distributed Datasets" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ];
+          :has_topics :Spark_RDD_Operations . 
+
+:Spark_RDD_Operations a :Topic ;
+          :name "Operations" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ].
+
+:Spark_Streaming a :Topic ;
+          :name "Spark Streaming" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ];
+          :has_topics :Spark_D_Stream, :Spark_Window_Operations . 
+
+:Spark_D_Stream a :Topic ;
+          :name "D Stream" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ];
+          :has_topics :Spark_D_Stream_Transformations . 
+
+:Spark_D_Stream_Transformations a :Topic ;
+          :name "Transformations" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:Spark_Window_Operations a :Topic ;
+          :name "Window Operations" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:Hadoop_Ecosystem a :Topic ;
+          :name "Hadoop Ecosystem" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ];
+          :has_topics :HDFS .
+
+:HDFS a :Topic ;
+          :name "HDFS" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 49;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterBigDatasystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ].
+
+:Parallel_Thinking a :Topic ;
+          :name "Parallel Thinking" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 45;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterParallelAndDistributedProgramming ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ]. 
+
+:Decentalised_Application a :Topic;
+          :name "Decentralised Application" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :Blockchain, :Client_Server, :Ethereum_based_dApp .
+        
+:Blockchain a :Topic;
+          :name "Blockchain" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :Proof_Of_Work, :Blockchain_Wallet, :Blockchain_Classification .
+
+        
+:Proof_Of_Work a :Topic;
+          :name "Proof of Work" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective4, :Course5062COPP6YObjective5 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+        
+:Client_Server a :Topic;
+          :name "Client-Server" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Apply ] ;
+          :has_topics :P2P, :Master_Slave .
+
+        
+:Master_Slave a :Topic;
+          :name "Master-Slave" ;
+          :classification_label :CL_ComputerArchitecture ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterSystemsArchitectureAndPerformance ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ];
+          :has_topics :Master_Slave_Coordination .
+
+:P2P a :Topic;
+          :name "P2P" ;
+          :classification_label :CL_ComputerNetworks ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterSystemsArchitectureAndPerformance ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics :P2P_Structured, :P2P_Unstructured .
+
+        
+:P2P_Structured a :Topic;
+          :name "Structured P2P" ;
+          :classification_label :CL_ComputerNetworks ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterSystemsArchitectureAndPerformance ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] .
+
+        
+:P2P_Unstructured a :Topic;
+          :name "Unstructured P2P" ;
+          :classification_label :CL_ComputerNetworks ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterSystemsArchitectureAndPerformance ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] .
+
+:Ethereum a :Topic;
+          :name "Ethereum" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Apply ] ;
+          :has_topics :Ethereum_based_dApp .
+
+:Ethereum_based_dApp a :Topic;
+          :name "Ethereum based dApp" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Apply ] ;
+          :has_topics :Smart_Contract, :Ethereum_Virtual_Machine .
+
+        
+:Ethereum_Virtual_Machine a :Topic;
+          :name "Ethereum VM" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics  :Ethereum_GAS .
+
+:Ethereum_GAS a :Topic;
+          :name "Ethereum GAS" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Smart_Contract a :Topic;
+          :name "Smart Contract" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Understand ] ;
+          :has_topics  :Smart_Contract_Deployment, :Smart_Contract_Development, :Smart_Contract_Execution, :Smart_Contract_Language, :Smart_Contract_Operation, :Smart_Contract_Operation, :Smart_Contract_State_Machine_View .
+
+:Smart_Contract_Deployment a :Topic;
+          :name "Smart Contract Deployment" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Smart_Contract_Development a :Topic;
+          :name "Smart Contract Development" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Smart_Contract_Language a :Topic;
+          :name "Smart Contract Language" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] ;
+          :has_topics :Smart_Contract_Language_Solidity .
+        
+:Smart_Contract_Language_Solidity a :Topic;
+          :name "Solidity" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Smart_Contract_Operation a :Topic;
+          :name "Smart Contract Operation" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+
+:Smart_Contract_Execution a :Topic;
+          :name "Smart Contract Execution" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Smart_Contract_State_Machine_View a :Topic;
+          :name "State Machine View of Smart Contracts" ;
+          :classification_label :CL_DecentralisedApplications ;
+          :in_course [
+            :week_id 50;
+            :objectives :Course5062COPP6YObjective6 ;
+            :chapter :ChapterDecentralizedsystems ;
+            :course :Course5062COPP6Y ;
+            :bloom_taxonomy_level :BTL_Remember ] .
+
+:Service_Oriented_Architecture a :Topic;
+    :name "Service Oriented Architecture";
+    :classification_label :CL_ComputerArchitecture;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Apply ];
+    :has_topics :Service_Oriented_Architecture_Model, :Web_Service .
+
+:Service_Oriented_Architecture_Model a :Topic;
+    :name "SOA Model";
+    :classification_label :CL_ComputerArchitecture;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :SOA_Model_Provider, :SOA_Model_Requester, :SOA_Model_Registry .
+
+:SOA_Model_Provider a :Topic;
+    :name "Provider";
+    :classification_label :CL_ComputerArchitecture;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand].
+
+:SOA_Model_Requester a :Topic;
+    :name "Requester";
+    :classification_label :CL_ComputerArchitecture;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand].
+
+:SOA_Model_Registry a :Topic;
+    :name "Registry";
+    :classification_label :CL_ComputerArchitecture;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand].
+
+:Web_Service a :Topic;
+    :name "Web Service";
+    :classification_label :CL_WebApplications;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterApplications ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Analyse ];
+    :has_topics :Web_Service_Addressing, :SOAP_Based_Web_Services, :Web_Service_Reference_Framework, :RESTful_Web_service .
+
+:Web_Service_Addressing a :Topic;
+    :name "Web Service Addressing";
+    :classification_label :CL_WebApplications;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterApplications ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember].
+
+:SOAP_Based_Web_Services a :Topic;
+    :name "SOAP Based Web Services";
+    :classification_label :CL_WebApplications;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterApplications ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand].
+
+:Web_Service_Reference_Framework a :Topic;
+    :name "Web Service Reference Framework";
+    :classification_label :CL_WebApplications;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterApplications ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Web_Service_State .
+
+:Web_Service_State a :Topic;
+    :name "Web Service State";
+    :classification_label :CL_WebApplications;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterApplications ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Web_Service_State_Stateless, :Web_Service_State_Stateful .
+
+:Web_Service_State_Stateless a :Topic;
+    :name "Stateless";
+    :classification_label :CL_WebApplications;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterApplications ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember].
+
+:Web_Service_State_Stateful a :Topic;
+    :name "Stateful";
+    :classification_label :CL_WebApplications;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterApplications ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember].
+
+:RESTful_Web_service a :Topic;
+    :name "RESTful Web service";
+    :classification_label :CL_WebApplications;
+    :in_course [
+        :week_id 49;
+        :objectives :Course5062COPP6YObjective4 ;
+        :chapter :ChapterApplications ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Decentralised_System a :Topic;
+    :name "Decentralised System";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Apply ];
+    :has_topics :Distributed_Ledger .
+
+:Distributed_Ledger a :Topic;
+    :name "Distributed Ledger";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Distributed_Ledger_Transaction, :Distributed_Ledger_Business, :Distributed_Ledger_Challenges, :Blockchain .
+
+:Centralised_System a :Topic;
+    :name "Centralised System";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] . 
+
+:Distributed_System a :Topic;
+    :name "Distributed_System";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterParallelAndDistributedProgramming ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Analyse ];
+    :has_topics :Decentralised_System, :Centralised_System .
+
+:Distributed_Memory_Systems a :Topic;
+    :name "Distributed Memory Systems";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterParallelAndDistributedProgramming ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Message_Passing_Interface .
+
+:Message_Passing_Interface a :Topic;
+    :name "Message Passing Interface";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 48;
+        :objectives :Course5062COPP6YObjective6 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :MPI_Datatype, :MPI_Type_Matching, :MPI_Organisation_Principle .
+
+:MPI_Organisation_Principle a :Topic;
+    :name "MPI Organisation Principle";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 48;
+        :objectives :Course5062COPP6YObjective6 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :MPI_Routines, :MPI_Communication .
+
+:MPI_Routines a :Topic;
+    :name "MPI Routines";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 48;
+        :objectives :Course5062COPP6YObjective6 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:MPI_Communication a :Topic;
+    :name "Communication";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 48;
+        :objectives :Course5062COPP6YObjective6 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :MPI_Synchronised_Communication, :MPI_Asynchronised_Communication, :MPI_point2point_Communication .
+
+:MPI_Synchronised_Communication a :Topic;
+    :name "Synchronised Communication";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 48;
+        :objectives :Course5062COPP6YObjective6 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:MPI_Asynchronised_Communication a :Topic;
+    :name "Asynchronised Communication";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 48;
+        :objectives :Course5062COPP6YObjective6 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:MPI_point2point_Communication a :Topic;
+    :name "Point to Point Communication";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 48;
+        :objectives :Course5062COPP6YObjective6 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:MPI_Datatype a :Topic;
+    :name "Datatypes";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 48;
+        :objectives :Course5062COPP6YObjective6 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:MPI_Type_Matching a :Topic;
+    :name "Type Matching";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 48;
+        :objectives :Course5062COPP6YObjective6 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Distributed_Ledger_Transaction a :Topic;
+    :name "Transaction";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective6 ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] ;
+    :has_topics :Distributed_Ledger_Transaction_Concensus .
+
+
+:Distributed_Ledger_Challenges a :Topic;
+    :name "Challenges";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+
+:Distributed_Ledger_Business a :Topic;
+    :name "Business Activities";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ] .
+
+:Blockchain_Wallet a :Topic;
+    :name "Blockchain Wallet";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Blockchain_Technologies a :Topic;
+    :name "Blockchain Technologies";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ];
+    :has_topics :Bitcoin, :Ethereum, :IOTA, :Hyperledger_Fabric .
+
+
+:Blockchain_Classification a :Topic;
+    :name "Blockchain Classification";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+
+:Hash_function a :Topic;
+    :name "Hash";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ];
+    :has_topics :SHA256 .
+
+
+:SHA256 a :Topic;
+    :name "SHA256";
+    :classification_label :CL_ComputerArchitecture ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Remember ] .
+
+
+:Bitcoin a :Topic;
+    :name "Bitcoin";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Analyse ];
+    :has_topics :Bitcoin_Nonce .
+
+:IOTA a :Topic;
+    :name "IOTA";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterSystemsArchitectureAndPerformance ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Hyperledger_Fabric a :Topic;
+    :name "Hyperledger Fabric";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+
+:Distributed_Ledger_Transaction_Concensus a :Topic;
+    :name "Concensus";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Analyse ] . 
+
+:Bitcoin_Nonce a :Topic;
+    :name "Nonce";
+    :classification_label :CL_DecentralisedApplications ;
+    :in_course [
+        :week_id 50;
+        :objectives :Course5062COPP6YObjective3 ;
+        :chapter :ChapterDecentralizedsystems ;
+        :course :Course5062COPP6Y;
+        :bloom_taxonomy_level :BTL_Understand ].
+
+:Course5062COPP6Y a :Course ;
+                :name "Distributed and Parallel Programming" ;
+                :course_code "5062COPP6Y" ;
+                :classification_label :CL_ParallelComputing, :CL_ComputerArchitecture , :CL_DecentralisedApplications, :CL_WebApplications, :CL_ComputerNetworks ;
+                :chapters :ChapterApplications, :ChapterBigDatasystems, :ChapterDecentralizedsystems, :ChapterSystemsArchitectureAndPerformance, :ChapterParallelAndDistributedProgramming ;
+                :objectives :Course5062COPP6YObjective1, :Course5062COPP6YObjective2, :Course5062COPP6YObjective3, :Course5062COPP6YObjective4, :Course5062COPP6YObjective5, :Course5062COPP6YObjective6, :Course5062COPP6YObjective7 ;
+                :part_of [
+                    :program :MinorInformatica;
+                    :year 1
+                ], [
+                    :program :ProgramBachelorComputerScience;
+                    :year 2
+                ];
+                :faculty :FacultyScience;
+                :semester 1;
+                :period 2;
+                :owner :UvA_Bachelor_Informatica ;
+                :credits 6.
+
+:ChapterSystemsArchitectureAndPerformance a :Chapter ;
+    :name "Systems Architecture and Performance" ;
+    :classification_label :CL_ComputerArchitecture ;
+    :root_topic :Memory .
+
+:ChapterParallelAndDistributedProgramming a :Chapter ;
+    :name "Parallel and distributed programming" ;
+    :classification_label :CL_ComputerArchitecture ;
+    :root_topic :Parallel_Programming .
+
+:ChapterBigDatasystems a :Chapter ;
+    :name "Big Data systems" ;
+    :classification_label :CL_ComputerArchitecture ;
+    :root_topic :Hadoop_Ecosystem .
+
+:ChapterDecentralizedsystems a :Chapter ;
+    :name "Decentralized systems" ;
+    :classification_label :CL_ComputerArchitecture ;
+    :root_topic :Decentalised_Application .
+
+:ChapterApplications a :Chapter ;
+    :name "Applications" ;
+    :classification_label :CL_ComputerArchitecture ;
+    :root_topic :Web_Service .
+
+:Course5062COPP6YObjective1 a :CourseObjective ;
+    :name "Explain the taxonomy of parallel and distributed systems; describe and explain the role and functionality of the different components that appear in these computing systems";
+    :objective_reference 1;
+    :bloom_taxonomy_level :BTL_Understand .
+
+:Course5062COPP6YObjective2 a :CourseObjective ;
+    :name "Apply basic performance analysis methods for parallel and distributed systems and evaluate their results";
+    :objective_reference 2;
+    :bloom_taxonomy_level :BTL_Apply .
+
+:Course5062COPP6YObjective3 a :CourseObjective ;
+    :name "Program small-scale applications using the main concepts of parallel processing and programming models using Pthreads and OpenMP";
+    :objective_reference 3;
+    :bloom_taxonomy_level :BTL_Create .
+
+:Course5062COPP6YObjective4 a :CourseObjective ;
+    :name "Describe and explain the differences between state-of-the art programming models for parallel and distributed systems";
+    :objective_reference 4;
+    :bloom_taxonomy_level :BTL_Understand .
+
+:Course5062COPP6YObjective5 a :CourseObjective ;
+    :name "Getting familiar with and able to program basic applications using modern big-data platforms";
+    :objective_reference 5;
+    :bloom_taxonomy_level :BTL_Apply .
+
+:Course5062COPP6YObjective6 a :CourseObjective ;
+    :name "Getting familiar with and able to program basic applications using modern P2P and decentralised systems";
+    :objective_reference 6;
+    :bloom_taxonomy_level :BTL_Apply .
+
+:Course5062COPP6YObjective7 a :CourseObjective ;
+    :name "Conduct a literature study on a selected topic of parallel and distributed architecture.";
+    :objective_reference 7;
+    :bloom_taxonomy_level :BTL_Analyse .
+
+
+:CL_ComputerArchitecture a :ClassificatinLabel ;
+    :name "Computer Architecture" ;
+    :related_field :DomainComputerScience .
+
+:CL_ComputerNetworks a :ClassificatinLabel ;
+    :name "Computer Networks" ;
+    :related_field :DomainComputerScience .
+
+:CL_DecentralisedApplications a :ClassificatinLabel ;
+    :name "Decentralised Applications" ;
+    :related_field :DomainComputerScience .
+
+:CL_ParallelComputing a :ClassificatinLabel ;
+    :name "Parallel Computing" ;
+    :related_field :DomainComputerScience .
+
+:CL_WebApplications a :ClassificatinLabel ;
+    :name "Web Applications" ;
+    :related_field :DomainComputerScience .
+
+
+:DomainComputerScience a :Domain ;
+                         :name "Computer Science" .
+
+

@@ -594,7 +594,7 @@ const rootNodes = graph.courses.map(course => course.root_topic);
     location.reload(true);
   });
   async function connectNodes(parent, child) {
-    fetch('http://localhost:3000/node/connect', {
+    fetch('/node/connect', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -607,7 +607,7 @@ const rootNodes = graph.courses.map(course => course.root_topic);
     return
   }
   async function unlinkNodes(parent, child) {
-    fetch('http://localhost:3000/node/unlink', {
+    fetch('/node/unlink', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -727,7 +727,7 @@ function _drag(d3) {
 // }
 
 // function _graph(d3) {
-//   return (d3.json("http://localhost:3000/query/data?id=5062COPP6Y"))
+//   return (d3.json("/query/data?id=5062COPP6Y"))
 // }
 
 
@@ -738,7 +738,7 @@ function _graph(d3) {
   // Get the courseCode from the URL. If it's not present, use a default value.
   const courseCode = urlParams.get('courseCode') || 'NOPE';
   
-  return (d3.json(`http://localhost:3000/query/data?id=${courseCode}`));
+  return (d3.json(`/query/data?id=${courseCode}`));
 }
 
 

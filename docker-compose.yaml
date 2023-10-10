@@ -1,0 +1,63 @@
+services:
+
+  ckg:
+    image: local/ckg
+    build:
+      context: .
+    environment:
+      - FUSEKI_URL=http://fuseki:3030
+
+  fuseki:
+    command: [ "--file", "/fuseki/input_data/res_data.ttl", "/ckg" ]
+    build:
+      context: ./deployment/jena-fuseki-docker
+      args:
+        - JENA_VERSION=4.9.0
+    image: fuseki
+    volumes:
+      - fuseki-databases:/fuseki/databases
+      - ./deployment/jena-fuseki-docker/input_data:/fuseki/input_data
+
+  haproxy:
+    image: haproxy:2.8
+    depends_on:
+      certbot_self_signed:
+        condition: service_completed_successfully
+    healthcheck:
+      test: |
+        bash -c 'exec 3<>/dev/tcp/127.0.0.1/80; echo -e "GET /health HTTP/1.1\nConnection: close\n" >&3; cat <&3 | grep -q "200 OK"'
+      interval: 5s
+    volumes:
+      - ./deployment/reverse_proxy/conf-haproxy:/usr/local/etc/haproxy/
+      - data-certificates:/etc/ssl/private/
+    ports:
+      - '80:80'
+      - '443:443'
+
+  certbot_self_signed:
+    image: local/certbot_self_signed
+    build:
+      context: ./deployment/reverse_proxy/docker/certbot_self_signed
+    volumes:
+      - data-certificates:/etc/ssl/private/
+    env_file:
+      - ./deployment/reverse_proxy/certbot.env
+
+#  # Uncomment this in production
+#  certbot_letsencrypt:
+#    image: local/certbot_letsencrypt
+#    build:
+#      context: ./deployment/reverse_proxy/docker/certbot_letsencrypt/
+#    depends_on:
+#      haproxy:
+#        condition: service_healthy
+#    volumes:
+#      - data-letsencrypt:/etc/letsencrypt/
+#      - data-certificates:/etc/ssl/private/
+#    env_file:
+#      - ./deployment/reverse_proxy/certbot.env
+
+volumes:
+  data-letsencrypt:
+  data-certificates:
+  fuseki-databases:
