@@ -56,7 +56,7 @@ document.getElementById('uploadBtn').addEventListener('click', async function ()
         console.log(rootTopics);
 
         try {
-            const response = await fetch('http://localhost:3000/query/subdomain/topics');
+            const response = await fetch('/query/subdomain/topics');
             const data = await response.json();
             const serverSubdomains = data.subdomains.map(sub => sub.name);
 
@@ -74,7 +74,7 @@ document.getElementById('uploadBtn').addEventListener('click', async function ()
                 // document.getElementById('result').innerText = `Unmatched subdomains: ${unmatchedSubdomains.join(', ')}`;
                 await processUnmatchedSubdomains();
             }
-            const updatedResponse = await fetch('http://localhost:3000/query/subdomain/topics');
+            const updatedResponse = await fetch('/query/subdomain/topics');
             const updatedData = await updatedResponse.json();
             const updatedSubdomainsList = updatedData.subdomains;
 

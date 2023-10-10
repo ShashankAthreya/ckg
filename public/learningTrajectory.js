@@ -41,7 +41,7 @@ let courseName=[];
 
 async function getCourseDetails(){
     try {
-        const response = await fetch('http://localhost:3000/course/details');
+        const response = await fetch('/course/details');
         const data = await response.json();
         data.courses.forEach(courses => {
             courseName[courses.id] = courses.name;
@@ -64,7 +64,7 @@ async function populateDropdowns() {
     selectElement.innerHTML = '';
 
     try {
-        const response = await fetch('http://localhost:3000/query/learningLines');
+        const response = await fetch('/query/learningLines');
         const data = await response.json();
 
         // Sort learningLines alphabetically by name
@@ -200,7 +200,7 @@ function populateTopics() {
     // console.log('Selected Subdomains:', selectedSubDomains);
 
 
-    fetch('http://localhost:3000/query/subdomain/topics')
+    fetch('/query/subdomain/topics')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
@@ -389,7 +389,7 @@ async function compareCourseTrajectory(courses, subdomains) {
         suitableCoursesForSubdomains[subdomain] = [];
 
         for (let course of courses) {
-            const response = await fetch(`http://localhost:3000/course/objective?id=${course}`);
+            const response = await fetch(`/course/objective?id=${course}`);
             const data = await response.json();
 
             // Check if subdomain exists in the fetched data's Subdomain
@@ -425,7 +425,7 @@ async function getCoursesOfTrajectory(subdomains, topics = []) {
         for (let subDomain of subdomains) {
             for (let topic of topics) {
                 try {
-                    const response = await fetch(`http://localhost:3000/query/trajectory/topic?subDomain=${subDomain}&topic=${topic}`, {
+                    const response = await fetch(`/query/trajectory/topic?subDomain=${subDomain}&topic=${topic}`, {
                         method: 'GET',
                         headers: {
                             'Accept': 'application/json'
@@ -453,7 +453,7 @@ async function getCoursesOfTrajectory(subdomains, topics = []) {
         // If topics filter is off, just loop through the subdomains
         for (let subDomain of subdomains) {
             try {
-                const response = await fetch(`http://localhost:3000/query/trajectory/domain?subDomain=${subDomain}`, {
+                const response = await fetch(`/query/trajectory/domain?subDomain=${subDomain}`, {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json'
