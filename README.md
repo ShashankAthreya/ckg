@@ -39,7 +39,7 @@ Replace `path_to_fuseki` with the actual path to your Fuseki directory:
 - Replace `localhost` with your domain name in `deployment/reverse_proxy/certbot.env`
 - Uncomment the `certbot_letsencrypt` section in `docker-compose.yaml`
 - Run: `docker compose up -d`
-- → https://localhost/course.html
+- → https://my-domain.tld/course.html
 
 ## 📄 CSV to CKG Conversion
 

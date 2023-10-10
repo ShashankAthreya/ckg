@@ -55,7 +55,7 @@ services:
 #      - data-letsencrypt:/etc/letsencrypt/
 #      - data-certificates:/etc/ssl/private/
 #    env_file:
-#      - certbot.env
+#      - ./deployment/reverse_proxy/certbot.env
 
 volumes:
   data-letsencrypt:
